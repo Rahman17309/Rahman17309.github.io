@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bankruptcy Risk Prediction · M A Rahman</title>
+  <meta name="description" content="An explainable early-warning model that ranks companies by bankruptcy risk from six qualitative ratings, built for credit teams who need to focus their due diligence.">
+  <meta property="og:title" content="Bankruptcy Risk Prediction · M A Rahman, Data Analyst">
+  <meta property="og:description" content="An explainable early-warning model that ranks companies by bankruptcy risk from six qualitative ratings, built for credit teams who need to focus their due diligence.">
+  <meta property="og:image" content="https://rahman17309.github.io/assets/projects/bankruptcy.jpg">
+  <meta name="theme-color" content="#1b1028">
+  <link rel="icon" href="../assets/profile.jpg">
+  <link rel="stylesheet" href="../css/style.css?v=9">
+  <link rel="stylesheet" href="../css/case.css?v=9">
+</head>
+<body class="case">
+  <header class="nav case-nav" id="nav">
+    <a class="nav__logo" href="../index.html#top"><img src="../assets/profile.jpg" alt="" width="32" height="32"><span>M A Rahman</span></a>
+    <a class="case-back" href="../index.html#work">← All projects</a>
+    <a class="btn btn--small btn--primary nav__cta" href="../assets/MA_Rahman_Data_Analyst_Resume.pdf" download="MA_Rahman_Data_Analyst_Resume.pdf">Resume</a>
+  </header>
+  <main class="container case-main">
+    <section class="case-hero">
+      <p class="eyebrow">Credit risk · Classification · Streamlit</p>
+      <h1>Bankruptcy Risk Prediction</h1>
+      <p class="case-lead">An explainable early-warning model that ranks companies by bankruptcy risk from six qualitative ratings, built for credit teams who need to focus their due diligence.</p>
+      <p class="case-meta"><span>End-to-end project</span></p>
+      <div class="case-links"><a class="btn btn--primary" href="https://github.com/Rahman17309/Bankruptcy-Prevention-Project" target="_blank" rel="noopener">View code on GitHub ↗</a><a class="btn btn--glass" href="https://youtu.be/jHw8JbTdTC4" target="_blank" rel="noopener">Watch the demo ↗</a></div>
+      <ul class="case-kpis"><li class="glass"><b>0.996</b><span>cross-validated score</span></li><li class="glass"><b>147</b><span>duplicate rows caught</span></li><li class="glass"><b>5</b><span>models compared and tuned</span></li><li class="glass"><b>−0.90</b><span>competitiveness correlation</span></li></ul>
+      <img class="case-cover glass" src="../assets/projects/bankruptcy.jpg" alt="" width="1200" height="750">
+    </section>
+    <section class="case-sec"><h2>The problem</h2><p>Lending to a company that later goes bankrupt is expensive; refusing a healthy one loses business. A credit team needs a quick, explainable way to rank applicants by risk.</p></section>
+    <section class="case-sec"><h2>The data</h2><p>250 companies with six ratings (industrial, management and operating risk, financial flexibility, credibility, competitiveness) on a low/medium/high scale, and a bankruptcy label.</p></section>
+    <section class="case-sec"><h2>Approach</h2><ol class="case-steps"><li><h3>Caught a data-quality trap</h3><p>Only 103 of the 250 rows were unique. Training on duplicates would leak identical rows into train and test and inflate the scores, so they were removed before splitting.</p></li><li><h3>Handled imbalance correctly</h3><p>SMOTE applied to the training set only, after a stratified 80/20 split.</p></li><li><h3>Compared five models</h3><p>Logistic Regression, Decision Tree, Random Forest, Gradient Boosting and SVM, with ROC and learning curves.</p></li><li><h3>Tuned and deployed</h3><p>GridSearchCV / RandomizedSearchCV pipelines, then a Streamlit app where users set the ratings and get a probability.</p></li></ol></section>
+    <section class="case-sec"><h2>What I found</h2><ul class="case-list"><li>Competitiveness (r = −0.90), credibility (−0.76) and financial flexibility (−0.75) almost completely separate the classes.</li><li>The &#x27;risk&#x27; ratings matter much less (r between +0.23 and +0.37).</li><li>A simple Logistic Regression is as accurate as the complex models and fully explainable, so it&#x27;s the recommended model.</li></ul><div class="case-table glass"><table><caption>Model results</caption><thead><tr><th>Model</th><th>Test accuracy (21 companies)</th><th>CV score (tuned)</th></tr></thead><tbody><tr><td>Logistic Regression</td><td>1.00</td><td>0.996</td></tr><tr><td>Random Forest</td><td>1.00</td><td>1.000</td></tr><tr><td>SVM</td><td>1.00</td><td>1.000</td></tr><tr><td>Decision Tree</td><td>0.95</td><td>–</td></tr></tbody></table></div></section>
+    
+    
+    <section class="case-sec case-insight glass"><h2>The key insight</h2><p>Near-perfect scores on 21 test companies would not hold on messy real-world credit data. The cross-validated scores and the feature analysis are the reliable part, and the explainable model is the one I&#x27;d put in front of a credit committee.</p></section>
+    <section class="case-sec"><h2>Limitations &amp; next steps</h2><ul class="case-list"><li>Small, very cleanly separable dataset.</li><li>Next: validate on a larger, real credit dataset with financial ratios.</li></ul></section>
+    <section class="case-sec"><h2>Tools</h2><ul class="tags"><li>Python</li><li>scikit-learn</li><li>imbalanced-learn</li><li>pandas</li><li>Streamlit</li></ul></section>
+    <nav class="case-pager" aria-label="More projects">
+      <a class="glass" href="product-funnel.html"><span>← Previous</span>Product Funnel &amp; Conversion Optimization</a>
+      <a class="glass" href="review-sentiment.html"><span>Next →</span>Customer Review Sentiment Analysis</a>
+    </nav>
+  </main>
+  <footer class="footer container"><p>© 2026 M A Rahman · <a href="mailto:rahmandatascience09@gmail.com">rahmandatascience09@gmail.com</a></p></footer>
+  <script data-goatcounter="https://rahman17309.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

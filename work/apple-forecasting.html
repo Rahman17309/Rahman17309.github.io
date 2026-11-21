@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Apple (AAPL) Stock Price Forecasting · M A Rahman</title>
+  <meta name="description" content="A 30-day forecast of Apple&#x27;s closing price from eight years of daily data, comparing five time-series approaches and being honest about which comparison is fair.">
+  <meta property="og:title" content="Apple (AAPL) Stock Price Forecasting · M A Rahman, Data Analyst">
+  <meta property="og:description" content="A 30-day forecast of Apple&#x27;s closing price from eight years of daily data, comparing five time-series approaches and being honest about which comparison is fair.">
+  <meta property="og:image" content="https://rahman17309.github.io/assets/projects/apple.jpg">
+  <meta name="theme-color" content="#1b1028">
+  <link rel="icon" href="../assets/profile.jpg">
+  <link rel="stylesheet" href="../css/style.css?v=9">
+  <link rel="stylesheet" href="../css/case.css?v=9">
+</head>
+<body class="case">
+  <header class="nav case-nav" id="nav">
+    <a class="nav__logo" href="../index.html#top"><img src="../assets/profile.jpg" alt="" width="32" height="32"><span>M A Rahman</span></a>
+    <a class="case-back" href="../index.html#work">← All projects</a>
+    <a class="btn btn--small btn--primary nav__cta" href="../assets/MA_Rahman_Data_Analyst_Resume.pdf" download="MA_Rahman_Data_Analyst_Resume.pdf">Resume</a>
+  </header>
+  <main class="container case-main">
+    <section class="case-hero">
+      <p class="eyebrow">Time series · Forecasting · Streamlit</p>
+      <h1>Apple (AAPL) Stock Price Forecasting</h1>
+      <p class="case-lead">A 30-day forecast of Apple&#x27;s closing price from eight years of daily data, comparing five time-series approaches and being honest about which comparison is fair.</p>
+      <p class="case-meta"><span>End-to-end project</span></p>
+      <div class="case-links"><a class="btn btn--primary" href="https://github.com/Rahman17309/Apple-Stock-Forecasting" target="_blank" rel="noopener">View code on GitHub ↗</a><a class="btn btn--glass" href="https://www.youtube.com/watch?v=r2wZKC7ocJk" target="_blank" rel="noopener">Watch the demo ↗</a></div>
+      <ul class="case-kpis"><li class="glass"><b>5</b><span>approaches compared</span></li><li class="glass"><b>2,011</b><span>trading days</span></li><li class="glass"><b>≈ $6</b><span>LSTM 1-day RMSE</span></li><li class="glass"><b>30-day</b><span>forecast in the app</span></li></ul>
+      <img class="case-cover glass" src="../assets/projects/apple.jpg" alt="" width="1200" height="750">
+    </section>
+    <section class="case-sec"><h2>The problem</h2><p>Investment and treasury teams want a view of where a stock is heading over the next month, and how much to trust that view.</p></section>
+    <section class="case-sec"><h2>The data</h2><p>2,011 trading days of AAPL prices, January 2012 to December 2019; the closing price is the target.</p></section>
+    <section class="case-sec"><h2>Approach</h2><ol class="case-steps"><li><h3>EDA</h3><p>Trend, moving averages, returns, volatility and seasonality.</p></li><li><h3>Statistical models</h3><p>ARIMA (ADF test, differencing, auto_arima), SARIMA and Holt-Winters (multiplicative trend and season).</p></li><li><h3>Prophet and LSTM</h3><p>Prophet with trend and seasonality; a 2-layer LSTM on 60-day windows.</p></li><li><h3>Evaluation</h3><p>Time-ordered 80/20 split, never shuffled.</p></li><li><h3>Deployment</h3><p>Streamlit app with interactive Plotly forecasts.</p></li></ol></section>
+    <section class="case-sec"><h2>What I found</h2><ul class="case-list"><li>The LSTM&#x27;s RMSE of about $6 is for one-day-ahead prediction using real prices up to yesterday, a much easier task than forecasting a whole period at once.</li><li>Holt-Winters improved with a multiplicative trend and season, consistent with a price whose swings grow as it rises.</li></ul></section>
+    
+    
+    <section class="case-sec case-insight glass"><h2>The key insight</h2><p>A fair model comparison needs the same forecast horizon for every model. That rolling 30-day comparison against a naive baseline is the next step, and it&#x27;s the kind of check I apply before trusting any forecast.</p></section>
+    <section class="case-sec"><h2>Limitations &amp; next steps</h2><ul class="case-list"><li>Forecast returns rather than prices, with prediction intervals.</li><li>Add external drivers such as market index and earnings dates.</li></ul></section>
+    <section class="case-sec"><h2>Tools</h2><ul class="tags"><li>Python</li><li>statsmodels</li><li>pmdarima</li><li>Prophet</li><li>TensorFlow/Keras</li><li>Plotly</li><li>Streamlit</li></ul></section>
+    <nav class="case-pager" aria-label="More projects">
+      <a class="glass" href="solar-power.html"><span>← Previous</span>Solar Power Generation Prediction</a>
+      <a class="glass" href="product-funnel.html"><span>Next →</span>Product Funnel &amp; Conversion Optimization</a>
+    </nav>
+  </main>
+  <footer class="footer container"><p>© 2026 M A Rahman · <a href="mailto:rahmandatascience09@gmail.com">rahmandatascience09@gmail.com</a></p></footer>
+  <script data-goatcounter="https://rahman17309.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

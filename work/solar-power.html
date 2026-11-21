@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Solar Power Generation Prediction · M A Rahman</title>
+  <meta name="description" content="Predicting a solar installation&#x27;s power output from weather conditions, so a grid operator can plan supply and storage ahead of time.">
+  <meta property="og:title" content="Solar Power Generation Prediction · M A Rahman, Data Analyst">
+  <meta property="og:description" content="Predicting a solar installation&#x27;s power output from weather conditions, so a grid operator can plan supply and storage ahead of time.">
+  <meta property="og:image" content="https://rahman17309.github.io/assets/projects/solar.jpg">
+  <meta name="theme-color" content="#1b1028">
+  <link rel="icon" href="../assets/profile.jpg">
+  <link rel="stylesheet" href="../css/style.css?v=9">
+  <link rel="stylesheet" href="../css/case.css?v=9">
+</head>
+<body class="case">
+  <header class="nav case-nav" id="nav">
+    <a class="nav__logo" href="../index.html#top"><img src="../assets/profile.jpg" alt="" width="32" height="32"><span>M A Rahman</span></a>
+    <a class="case-back" href="../index.html#work">← All projects</a>
+    <a class="btn btn--small btn--primary nav__cta" href="../assets/MA_Rahman_Data_Analyst_Resume.pdf" download="MA_Rahman_Data_Analyst_Resume.pdf">Resume</a>
+  </header>
+  <main class="container case-main">
+    <section class="case-hero">
+      <p class="eyebrow">Regression · Energy · Streamlit</p>
+      <h1>Solar Power Generation Prediction</h1>
+      <p class="case-lead">Predicting a solar installation&#x27;s power output from weather conditions, so a grid operator can plan supply and storage ahead of time.</p>
+      <p class="case-meta"><span>End-to-end project</span></p>
+      <div class="case-links"><a class="btn btn--primary" href="https://github.com/Rahman17309/Solar-Power-Prediction" target="_blank" rel="noopener">View code on GitHub ↗</a><a class="btn btn--glass" href="https://youtu.be/sFNEGxjOMiI" target="_blank" rel="noopener">Watch the demo ↗</a></div>
+      <ul class="case-kpis"><li class="glass"><b>0.905</b><span>R² on test set</span></li><li class="glass"><b>0.855</b><span>5-fold CV R²</span></li><li class="glass"><b>8</b><span>models compared</span></li><li class="glass"><b>243</b><span>tuning configs searched</span></li></ul>
+      <img class="case-cover glass" src="../assets/projects/solar.jpg" alt="" width="1200" height="750">
+    </section>
+    <section class="case-sec"><h2>The problem</h2><p>Solar output swings with sun angle, cloud cover and humidity. Under-forecasting means paying for unneeded backup power; over-forecasting means buying expensive power at short notice.</p></section>
+    <section class="case-sec"><h2>The data</h2><p>2,920 three-hour periods with nine weather features (distance to solar noon, temperature, wind, sky cover, visibility, humidity, pressure) and the power generated.</p></section>
+    <section class="case-sec"><h2>Approach</h2><ol class="case-steps"><li><h3>Cleaning and EDA</h3><p>Missing values and outliers treated; distance to solar noon (r = −0.75) and humidity (r = −0.52) have the strongest relationships.</p></li><li><h3>Model comparison</h3><p>Eight regressors on a 70/30 split.</p></li><li><h3>Tuning</h3><p>GridSearchCV over 243 Gradient Boosting configurations with 5-fold CV.</p></li><li><h3>Deployment</h3><p>A Streamlit app that takes weather inputs and returns predicted output.</p></li></ol></section>
+    <section class="case-sec"><h2>What I found</h2><ul class="case-list"><li>Tuned Gradient Boosting explains about 90% of the variance on unseen data (RMSE ≈ 3,054 J).</li><li>Cross-validated R² of 0.855 is the more honest estimate; one fold scores 0.77, so performance varies with the weather pattern.</li></ul></section>
+    
+    
+    <section class="case-sec case-insight glass"><h2>The key insight</h2><p>I report the cross-validated score alongside the single test split, because one lucky split can overstate how a model will perform in production.</p></section>
+    <section class="case-sec"><h2>Limitations &amp; next steps</h2><ul class="case-list"><li>A time-based split would better reflect real forecasting than a random split.</li><li>Next: use weather-forecast inputs for a true day-ahead forecast and compare against a persistence baseline.</li></ul></section>
+    <section class="case-sec"><h2>Tools</h2><ul class="tags"><li>Python</li><li>scikit-learn</li><li>pandas</li><li>Seaborn</li><li>Streamlit</li></ul></section>
+    <nav class="case-pager" aria-label="More projects">
+      <a class="glass" href="review-sentiment.html"><span>← Previous</span>Customer Review Sentiment Analysis</a>
+      <a class="glass" href="apple-forecasting.html"><span>Next →</span>Apple (AAPL) Stock Price Forecasting</a>
+    </nav>
+  </main>
+  <footer class="footer container"><p>© 2026 M A Rahman · <a href="mailto:rahmandatascience09@gmail.com">rahmandatascience09@gmail.com</a></p></footer>
+  <script data-goatcounter="https://rahman17309.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
