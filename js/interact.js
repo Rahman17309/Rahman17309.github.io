@@ -49,14 +49,15 @@
   }
   if (fine && !reduce) {
     document.querySelectorAll(".pcard").forEach((c) => tilt(c, 7));
-    const portrait = document.querySelector(".intro__portrait");
-    if (portrait) {
-      window.addEventListener("pointermove", (e) => {
-        if (window.scrollY > window.innerHeight) return;
-        const x = e.clientX / window.innerWidth - 0.5, y = e.clientY / window.innerHeight - 0.5;
-        portrait.style.transform = `perspective(700px) rotateY(${x * 16}deg) rotateX(${-y * 16}deg)`;
-      }, { passive: true });
-    }
+    // Hero: pills and bubbles float with the mouse at different depths
+    const floaters = [...document.querySelectorAll(".intro .pill, .intro .bubble")];
+    const face = document.querySelector(".hero-face img");
+    window.addEventListener("pointermove", (e) => {
+      if (window.scrollY > window.innerHeight) return;
+      const x = e.clientX / window.innerWidth - 0.5, y = e.clientY / window.innerHeight - 0.5;
+      floaters.forEach((el, i) => { const d = 10 + (i % 3) * 8; el.style.translate = `${-x * d}px ${-y * d}px`; });
+      if (face) face.style.transform = `translate(${x * 10}px, ${y * 6}px)`;
+    }, { passive: true });
   }
 
   /* ---------- Magnetic buttons ---------- */
@@ -98,13 +99,40 @@
     const onS = () => {
       if (shown || window.scrollY < window.innerHeight * 0.9) return;
       shown = true;
-      chip.textContent = fine ? "✦ Tip: click the background to send a ripple through the data" : "✦ Tip: tap the background to send a ripple through the data";
+      chip.textContent = fine ? "✦ Tip: move through the particles, or click the background to send a shockwave" : "✦ Tip: tap the background to send a shockwave through the particles";
       chip.classList.add("is-visible");
       setTimeout(() => chip.classList.remove("is-visible"), 5000);
       window.removeEventListener("scroll", onS);
     };
     window.addEventListener("scroll", onS, { passive: true });
   }
+
+  /* ---------- Sliding glass thumb for segmented controls (nav tabs + filters) ---------- */
+  function segmented(container, itemSel, activeSel) {
+    if (!container) return;
+    const thumb = document.createElement("span");
+    thumb.className = "seg-thumb"; thumb.setAttribute("aria-hidden", "true");
+    container.prepend(thumb);
+    const move = (el) => {
+      if (!el) { thumb.style.opacity = "0"; return; }
+      const c = container.getBoundingClientRect(), r = el.getBoundingClientRect();
+      thumb.style.opacity = "1";
+      thumb.style.width = r.width + "px"; thumb.style.height = r.height + "px";
+      thumb.style.transform = `translate(${r.left - c.left}px, ${r.top - c.top}px)`;
+    };
+    const current = () => container.querySelector(activeSel);
+    container.querySelectorAll(itemSel).forEach((it) => {
+      if (fine) it.addEventListener("pointerenter", () => move(it));
+      it.addEventListener("click", () => setTimeout(() => move(current()), 0));
+    });
+    container.addEventListener("pointerleave", () => move(current()));
+    new MutationObserver(() => move(current())).observe(container, { subtree: true, attributes: true, attributeFilter: ["class"] });
+    window.addEventListener("resize", () => move(current()));
+    document.fonts && document.fonts.ready.then(() => move(current()));
+    move(current());
+  }
+  segmented(document.querySelector(".filters"), ".chip", ".chip.is-active");
+  segmented(document.querySelector(".nav__links"), "a", "a.is-active");
 
   /* ---------- Quick-view modal ---------- */
   const modal = document.getElementById("project-modal");

@@ -1,12 +1,10 @@
-// Page interactions: nav, mobile menu, filters, progress bar, back-to-top, copy email and GSAP motion.
+// Page interactions: nav, filters, progress bar, back-to-top, copy email and GSAP motion.
 (function () {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const hasGsap = typeof window.gsap !== "undefined" && typeof window.ScrollTrigger !== "undefined";
   document.getElementById("year").textContent = new Date().getFullYear();
 
   const nav = document.getElementById("nav");
-  const toggle = document.querySelector(".nav__toggle");
-  const menu = document.getElementById("mobile-menu");
   const progress = document.querySelector(".progress span");
   const toTop = document.querySelector(".to-top");
 
@@ -16,8 +14,6 @@
     const y = window.scrollY;
     const max = document.documentElement.scrollHeight - window.innerHeight;
     progress.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
-    const menuOpen = toggle.getAttribute("aria-expanded") === "true";
-    nav.classList.toggle("is-hidden", !menuOpen && y > lastY && y > 500);
     toTop.classList.toggle("is-visible", y > window.innerHeight * 1.2);
     lastY = y;
   }
@@ -33,16 +29,6 @@
   }, { rootMargin: "-45% 0px -50% 0px" });
   links.forEach((a) => { const s = document.querySelector(a.getAttribute("href")); if (s) io.observe(s); });
 
-  /* ---------- Mobile menu ---------- */
-  function setMenu(open) {
-    toggle.setAttribute("aria-expanded", String(open));
-    toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-    menu.hidden = !open;
-    document.body.style.overflow = open ? "hidden" : "";
-  }
-  toggle.addEventListener("click", () => setMenu(toggle.getAttribute("aria-expanded") !== "true"));
-  menu.addEventListener("click", (e) => { if (e.target.tagName === "A") setMenu(false); });
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape") setMenu(false); });
 
   /* ---------- Toast + copy email ---------- */
   const toast = document.querySelector(".toast");
@@ -84,20 +70,28 @@
   gsap.registerPlugin(ScrollTrigger);
   const EASE = "expo.out";
 
-  // Intro: portrait first, then the words
-  gsap.timeline({ defaults: { ease: EASE } })
-    .to(".intro__portrait", { opacity: 1, scale: 1, duration: 1.2 }, 0.1)
-    .to(".reveal-intro", { opacity: 1, y: 0, duration: 1, stagger: 0.08 }, 0.4);
+  // Hero plays after the loader: the face rises, the words drop in and land, the header settles
+  gsap.set(".nav", { y: -120, opacity: 0 });
+  gsap.set(".hero-face", { y: "30%", opacity: 0 });
+  gsap.set(".hero-word", { opacity: 0, scale: 1.15 });
+  gsap.set(".intro .reveal-intro", { y: -window.innerHeight * 0.5, opacity: 0 });
+  function playIntro() {
+    gsap.timeline()
+      .to(".hero-word", { opacity: 1, scale: 1, duration: 1.2, ease: "expo.out" }, 0)
+      .to(".hero-face", { y: 0, opacity: 1, duration: 1.2, ease: "expo.out" }, 0.1)
+      .to(".hero-name", { y: 0, opacity: 1, duration: 1, ease: "bounce.out" }, 0.35)
+      .to(".intro .pill, .intro .bubble", { y: 0, opacity: 1, duration: 0.9, ease: "back.out(1.6)", stagger: 0.06 }, 0.5)
+      .to(".nav", { y: 0, opacity: 1, duration: 0.8, ease: "back.out(1.6)", clearProps: "transform,opacity" }, 0.7);
+  }
+  if (document.getElementById("loader")) window.addEventListener("loader:done", playIntro, { once: true });
+  else playIntro();
 
-  // As you scroll away, the intro recedes and its black backdrop fades to reveal the terrain
-  gsap.to(".intro__inner", {
-    yPercent: -12, opacity: 0, ease: "none",
-    scrollTrigger: { trigger: ".intro", start: "top top", end: "bottom top", scrub: true },
-  });
-  gsap.to(".intro", {
-    backgroundColor: "rgba(0,0,0,0)", ease: "none",
-    scrollTrigger: { trigger: ".intro", start: "top top", end: "bottom top", scrub: true },
-  });
+  // Hero parallax as you scroll away: word drifts up, face sinks, name fades
+  const heroST = { trigger: ".intro", start: "top top", end: "bottom top", scrub: true };
+  gsap.to(".hero-word", { yPercent: -60, ease: "none", scrollTrigger: heroST });
+  gsap.to(".hero-face", { yPercent: 12, scale: 0.94, ease: "none", scrollTrigger: heroST });
+  gsap.to(".hero-name", { yPercent: -40, ease: "none", scrollTrigger: heroST });
+
 
   // Reveals: groups stagger together, single elements reveal on their own
   const groups = [".stats", ".services__grid", ".cards", ".skills__grid", ".facts"];

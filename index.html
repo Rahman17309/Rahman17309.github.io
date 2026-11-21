@@ -8,15 +8,27 @@
   <meta property="og:title" content="M A Rahman · Data Analyst">
   <meta property="og:description" content="Data Analyst · SQL · Power BI · Python · Excel. Ex-Amazon.">
   <meta property="og:image" content="assets/projects/funnel.jpg">
-  <meta name="theme-color" content="#000000">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23000'/><rect x='7' y='17' width='4' height='8' rx='1' fill='%232997ff'/><rect x='14' y='11' width='4' height='14' rx='1' fill='%232997ff'/><rect x='21' y='6' width='4' height='19' rx='1' fill='%23f5f5f7'/></svg>">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#2a1b3d">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232a1b3d'/><rect x='7' y='17' width='4' height='8' rx='1' fill='%23e98074'/><rect x='14' y='11' width='4' height='14' rx='1' fill='%23d83f87'/><rect x='21' y='6' width='4' height='19' rx='1' fill='%23fbf6fa'/></svg>">
+  <link rel="preload" href="assets/face-cutout.webp" as="image">
+  <link rel="preload" href="assets/fonts/montserrat-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/yellowtail-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
+  <div class="loader" id="loader" role="status" aria-live="polite" aria-label="Loading portfolio">
+    <div class="loader__inner">
+      <div class="loader__bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <p class="loader__hello fall">Welcome to the portfolio of</p>
+      <h2 class="loader__name" aria-label="M A Rahman"><span class="fall">M</span><span class="fall">&nbsp;</span><span class="fall">A</span><span class="fall">&nbsp;</span><span class="fall">R</span><span class="fall">a</span><span class="fall">h</span><span class="fall">m</span><span class="fall">a</span><span class="fall">n</span></h2>
+      <p class="loader__role fall">Data Analyst <span class="script">· turning data into decisions</span></p>
+      <div class="loader__progress fall" aria-hidden="true"><span></span></div>
+      <div class="loader__meta fall"><span class="loader__step">Loading data…</span><span class="loader__pct">0%</span></div>
+      <button class="loader__skip fall" type="button">Skip intro</button>
+    </div>
+  </div>
+
   <div class="progress" aria-hidden="true"><span></span></div>
   <canvas class="bg-canvas" id="bg-canvas" aria-hidden="true"></canvas>
   <div class="bg-veil" aria-hidden="true"></div>
@@ -42,41 +54,39 @@
       </a>
       <a class="btn btn--small btn--primary nav__cta" href="assets/MA-Rahman-Resume.pdf" target="_blank" rel="noopener">Resume</a>
     </div>
-    <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
   </header>
-  <div class="mobile-menu" id="mobile-menu" hidden>
-    <a href="#about">About</a><a href="#work">Work</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
-    <div class="mobile-menu__links">
-      <a href="https://www.linkedin.com/in/rahman17309/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://github.com/Rahman17309" target="_blank" rel="noopener">GitHub</a>
-      <a href="assets/MA-Rahman-Resume.pdf" target="_blank" rel="noopener">Resume</a>
-    </div>
-  </div>
 
   <main id="main">
-    <!-- INTRO: face first -->
-    <section class="intro" id="top">
-      <div class="intro__glow" aria-hidden="true"></div>
-      <div class="intro__inner container">
-        <div class="intro__portrait">
-          <div class="portrait-ring" aria-hidden="true"></div>
-          <img src="assets/profile.jpg" alt="Portrait of M A Rahman" width="800" height="800">
-          <span class="status"><span class="status__dot" aria-hidden="true"></span>Open to work</span>
-        </div>
-        <p class="intro__hello reveal-intro">Hi, I'm M A Rahman · <span class="rotator" aria-live="off"><span class="rotator__word">Data Analyst</span><span class="rotator__caret" aria-hidden="true"></span></span></p>
-        <h1 class="intro__title reveal-intro">I turn business data into<br><span class="grad">clear decisions.</span></h1>
-        <p class="intro__lead reveal-intro">Data Analyst with 3+ years in BI, SQL and reporting automation, including Amazon. Based in Hyderabad, India.</p>
-        <div class="intro__actions reveal-intro">
-          <a class="btn btn--primary" href="#work">View my work</a>
-          <a class="btn btn--glass" href="assets/MA-Rahman-Resume.pdf" target="_blank" rel="noopener">Download resume</a>
-        </div>
-        <ul class="intro__social reveal-intro" aria-label="Profiles">
-          <li><a href="https://www.linkedin.com/in/rahman17309/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
-          <li><a href="https://github.com/Rahman17309" target="_blank" rel="noopener">GitHub ↗</a></li>
-          <li><a href="mailto:rahmandatascience09@gmail.com">Email ↗</a></li>
-        </ul>
+    <!-- HERO: face card -->
+    <section class="intro" id="top" aria-labelledby="hero-name">
+      <p class="hero-word" aria-hidden="true">ANALYST</p>
+      <ul class="pills" aria-label="Core skills">
+        <li class="pill reveal-intro" style="--x:-31%;--y:20%">SQL</li>
+        <li class="pill reveal-intro" style="--x:-37%;--y:34%">Power BI</li>
+        <li class="pill reveal-intro" style="--x:-29%;--y:48%">Python</li>
+        <li class="pill reveal-intro" style="--x:29%;--y:20%">A/B Testing</li>
+        <li class="pill reveal-intro" style="--x:36%;--y:34%">Dashboards</li>
+        <li class="pill reveal-intro" style="--x:28%;--y:48%">Reconciliation</li>
+      </ul>
+      <div class="hero-face">
+        <img src="assets/face-cutout.webp" alt="M A Rahman in a charcoal suit" width="900" height="960" fetchpriority="high">
       </div>
-      <a class="scroll-cue" href="#about" aria-label="Scroll to About"><span></span></a>
+      <span class="bubble bubble--left reveal-intro">Hello, my name is</span>
+      <a class="bubble bubble--right reveal-intro" href="#contact">Let's work <em>together!</em></a>
+      <h1 class="hero-name reveal-intro" id="hero-name">M A Rahman</h1>
+      <a class="scroll-cue" href="#intro-sub" aria-label="Scroll down"><span></span></a>
+    </section>
+
+    <!-- INTRO TEXT -->
+    <section class="intro-sub container" id="intro-sub">
+      <p class="intro__hello reveal">Data Analyst · <span class="rotator" aria-live="off"><span class="rotator__word">Data Analyst</span><span class="rotator__caret" aria-hidden="true"></span></span></p>
+      <h2 class="intro__title reveal">I turn business data into<br><span class="grad">clear decisions.</span></h2>
+      <p class="intro__lead reveal">3+ years in BI, SQL and reporting automation, including Amazon. Based in Hyderabad, India, and open to Data Analyst roles.</p>
+      <div class="intro__actions reveal">
+        <a class="btn btn--primary" href="#work">View my work</a>
+        <a class="btn btn--glass" href="assets/MA-Rahman-Resume.pdf" target="_blank" rel="noopener">Download resume</a>
+        <button class="btn btn--glass" type="button" data-open-chat>Ask my assistant</button>
+      </div>
     </section>
 
     <!-- STATS STRIP -->
@@ -92,7 +102,8 @@
       <div class="container about__grid">
         <div>
           <p class="eyebrow reveal">About me</p>
-          <h2 class="h2 reveal">Analyst by trade.<br><span class="soft">Finance-literate by background.</span></h2>
+          <h2 class="h2 reveal">Analyst by trade.<br><span class="soft">Finance-literate by</span> <span class="script">background.</span></h2>
+          <figure class="about__photo reveal"><img src="assets/about.jpg" alt="M A Rahman, portrait" width="848" height="1264" loading="lazy"></figure>
         </div>
         <div class="about__text">
           <p class="reveal">I'm a Data Analyst with 3+ years across data analysis, business intelligence and reporting automation, including a Business Analyst role at Amazon. I work in <strong>SQL</strong> (joins, CTEs, window functions), <strong>Power BI</strong> (DAX, Power Query, data modelling), <strong>Python</strong> and <strong>Advanced Excel</strong>.</p>
@@ -111,7 +122,7 @@
     <section class="section services" aria-labelledby="services-h">
       <div class="container">
         <p class="eyebrow reveal">What I do</p>
-        <h2 class="h2 reveal" id="services-h">How I help teams.</h2>
+        <h2 class="h2 reveal" id="services-h">How I help <span class="script">teams.</span></h2>
         <div class="services__grid">
           <article class="card glass reveal">
             <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h16M8 15l3-4 3 2 5-6"/></svg></span>
@@ -143,7 +154,7 @@
         <div class="work__head">
           <div>
             <p class="eyebrow reveal">Selected work</p>
-            <h2 class="h2 reveal" id="work-h">Projects, with the numbers.</h2>
+            <h2 class="h2 reveal" id="work-h">Projects, with <span class="script">the numbers.</span></h2>
           </div>
           <div class="filters reveal" role="group" aria-label="Filter projects">
             <button class="chip is-active" data-filter="all" aria-pressed="true">All</button>
@@ -233,7 +244,7 @@
     <section class="section experience" id="experience" aria-labelledby="exp-h">
       <div class="container">
         <p class="eyebrow reveal">Experience</p>
-        <h2 class="h2 reveal" id="exp-h">Where I've done the work.</h2>
+        <h2 class="h2 reveal" id="exp-h">Where I've done <span class="script">the work.</span></h2>
         <ol class="timeline">
           <li class="timeline__line" aria-hidden="true"><span class="timeline__fill"></span></li>
           <li class="job glass reveal">
@@ -272,7 +283,7 @@
     <section class="section skills" id="skills" aria-labelledby="skills-h">
       <div class="container">
         <p class="eyebrow reveal">Skills</p>
-        <h2 class="h2 reveal" id="skills-h">Tools I work with every day.</h2>
+        <h2 class="h2 reveal" id="skills-h">Tools I use <span class="script">every day.</span></h2>
         <div class="skills__grid">
           <div class="card glass reveal"><h3>BI &amp; visualisation</h3><ul class="chips"><li>Power BI</li><li>DAX</li><li>Power Query</li><li>Data modelling</li><li>Tableau</li><li>KPI &amp; MIS reporting</li></ul></div>
           <div class="card glass reveal"><h3>SQL &amp; databases</h3><ul class="chips"><li>SQL</li><li>BigQuery</li><li>PostgreSQL</li><li>MySQL</li><li>CTEs &amp; window functions</li><li>Query optimisation</li></ul></div>
@@ -289,7 +300,7 @@
       <div class="container">
         <div class="contact__card glass reveal">
           <p class="eyebrow">Contact</p>
-          <h2 class="contact__title" id="contact-h">Let's work together.</h2>
+          <h2 class="contact__title" id="contact-h">Let's work <span class="script">together.</span></h2>
           <p class="contact__lead">Open to Data Analyst roles and freelance analytics work. Email is the fastest way to reach me.</p>
           <p class="contact__email"><a href="mailto:rahmandatascience09@gmail.com">rahmandatascience09@gmail.com</a></p>
           <div class="contact__actions">
@@ -313,8 +324,28 @@
   </footer>
 
   <a class="to-top" href="#top" aria-label="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6"/></svg></a>
+
+  <!-- Chat assistant -->
+  <button class="chat-fab" type="button" aria-label="Open chat assistant" aria-expanded="false" aria-controls="chat">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H8l-4 4V5Z"/><path d="M8 9h8M8 12h5"/></svg>
+    <span class="chat-fab__dot" aria-hidden="true"></span>
+  </button>
+  <section class="chat" id="chat" aria-label="Chat assistant" hidden>
+    <header class="chat__head">
+      <img src="assets/profile.jpg" alt="" width="36" height="36">
+      <div><p class="chat__title">Rahman's assistant</p><p class="chat__sub">Answers about my skills, projects &amp; experience</p></div>
+      <button class="chat__close" type="button" aria-label="Close chat">✕</button>
+    </header>
+    <div class="chat__log" role="log" aria-live="polite"></div>
+    <div class="chat__chips" aria-label="Suggested questions"></div>
+    <form class="chat__form" autocomplete="off">
+      <label class="sr-only" for="chat-input">Ask a question</label>
+      <input id="chat-input" type="text" placeholder="Ask about skills, projects, availability…" maxlength="200">
+      <button type="submit" aria-label="Send"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+    </form>
+  </section>
   <div class="toast" role="status" aria-live="polite"></div>
-  <p class="hint-chip" aria-hidden="true">✦ Tip: click the background to send a ripple through the data</p>
+  <p class="hint-chip" aria-hidden="true">✦ Tip: move your mouse through the particles, or click to send a shockwave</p>
   <div class="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__ring"></span></div>
 
   <dialog class="modal" id="project-modal" aria-labelledby="modal-title">
@@ -336,7 +367,9 @@
   <script src="vendor/ScrollTrigger.min.js"></script>
   <script type="importmap">{ "imports": { "three": "./vendor/three.module.min.js" } }</script>
   <script type="module" src="js/hero.js"></script>
+  <script src="js/loader.js"></script>
   <script src="js/main.js"></script>
   <script src="js/interact.js"></script>
+  <script src="js/chat.js"></script>
 </body>
 </html>

@@ -1,203 +1,146 @@
-// Background: a 3D "data terrain", a grid of bars whose heights flow like a live chart.
-// Fixed behind the page; the camera orbits slowly and drifts with scroll and mouse.
+// Background: thousands of glowing data points that morph into a new shape for each part of the page
+// (globe → ring → wave → bar chart → helix → galaxy) as you scroll. The mouse pushes points away,
+// and a click sends a shockwave through them.
 import * as THREE from "three";
 
 const canvas = document.getElementById("bg-canvas");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const small = window.innerWidth < 760;
 
 function supportsWebGL() {
-  try {
-    const c = document.createElement("canvas");
-    return !!(window.WebGLRenderingContext && (c.getContext("webgl2") || c.getContext("webgl")));
-  } catch { return false; }
+  try { const c = document.createElement("canvas"); return !!(c.getContext("webgl2") || c.getContext("webgl")); }
+  catch { return false; }
 }
-
 if (canvas && supportsWebGL()) init();
 
 function init() {
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: "high-performance" });
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: true, powerPreference: "high-performance" });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
-  renderer.setClearColor(0x000000, 1);
+  renderer.setClearColor(0x000000, 0);
 
   const scene = new THREE.Scene();
-  scene.fog = new THREE.Fog(0x000000, 16, 44);
+  const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 200);
+  camera.position.set(0, 0, 34);
 
-  const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
-  const camBase = new THREE.Vector3(14, 13, 20);
-  camera.position.copy(camBase);
-  const target = new THREE.Vector3(3, 0, 0);
+  const N = small ? 2600 : 5200;
+  const R = 11;
 
-  // Lights
-  scene.add(new THREE.AmbientLight(0xffffff, 0.35));
-  const key = new THREE.DirectionalLight(0xffffff, 1.4);
-  key.position.set(8, 18, 10);
-  scene.add(key);
-  const rim = new THREE.DirectionalLight(0x64d2ff, 0.9);
-  rim.position.set(-12, 6, -10);
-  scene.add(rim);
+  /* ---------- Target shapes ---------- */
+  const shapes = [];
+  const make = (fn) => { const a = new Float32Array(N * 3); for (let i = 0; i < N; i++) { const p = fn(i, i / N); a[i * 3] = p[0]; a[i * 3 + 1] = p[1]; a[i * 3 + 2] = p[2]; } shapes.push(a); };
+  const golden = Math.PI * (3 - Math.sqrt(5));
+  // 0 · globe (intro)
+  make((i) => { const y = 1 - (i / (N - 1)) * 2, r = Math.sqrt(1 - y * y), th = golden * i; return [Math.cos(th) * r * R, y * R, Math.sin(th) * r * R]; });
+  // 1 · ring / torus (about)
+  make((i, t) => { const u = t * Math.PI * 2 * 24, v = (i * 0.618) % 1 * Math.PI * 2, a = 12, b = 3.2; return [(a + b * Math.cos(v)) * Math.cos(u), b * Math.sin(v), (a + b * Math.cos(v)) * Math.sin(u)]; });
+  // 2 · wave surface (services)
+  make((i) => { const side = Math.ceil(Math.sqrt(N)), gx = i % side, gz = Math.floor(i / side); const x = (gx / side - 0.5) * 34, z = (gz / side - 0.5) * 24; return [x, Math.sin(x * 0.35) * 2.6 + Math.cos(z * 0.4) * 2.2 - 2, z]; });
+  // 3 · bar chart (work)
+  make((i) => { const bars = 12, col = i % bars, k = Math.floor(i / bars), per = Math.floor(N / bars); const h = [4, 7, 5.5, 9, 6.5, 11, 8, 13, 10, 15, 12, 17][col]; const y = (k / per) * h; return [(col - (bars - 1) / 2) * 2.4 + (Math.random() - 0.5) * 1.1, y - 7, (Math.random() - 0.5) * 1.6]; });
+  // 4 · helix / timeline (experience)
+  make((i, t) => { const strand = i % 2, a = t * Math.PI * 10 + strand * Math.PI; return [Math.cos(a) * 6 + (Math.random() - 0.5) * 0.8, (t - 0.5) * 30, Math.sin(a) * 6 + (Math.random() - 0.5) * 0.8]; });
+  // 5 · spiral galaxy (skills & contact)
+  make((i, t) => { const arm = i % 3, r = Math.pow(t, 0.6) * 16, a = r * 0.45 + arm * (Math.PI * 2 / 3); const s = (1 - t) * 1.6 + 0.3; return [Math.cos(a) * r + (Math.random() - 0.5) * s, (Math.random() - 0.5) * s * 0.8, Math.sin(a) * r + (Math.random() - 0.5) * s]; });
 
-  // Grid of bars
-  const isSmall = window.innerWidth < 760;
-  const N = isSmall ? 26 : 40;
-  const SP = 0.62;
-  const count = N * N;
-  const geo = new THREE.BoxGeometry(0.46, 1, 0.46);
-  geo.translate(0, 0.5, 0); // grow from the floor
-  const mat = new THREE.MeshStandardMaterial({ roughness: 0.45, metalness: 0.15 });
-  const bars = new THREE.InstancedMesh(geo, mat, count);
-  bars.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
-  scene.add(bars);
-
-  const low = new THREE.Color(0x061a33);
-  const mid = new THREE.Color(0x0a84ff);
-  const high = new THREE.Color(0xbfe3ff);
-  const tmpColor = new THREE.Color();
-  const dummy = new THREE.Object3D();
-  const offset = ((N - 1) * SP) / 2;
-
-  // Floor grid lines for a "chart" feel
-  const grid = new THREE.GridHelper(N * SP + 4, N + 6, 0x14243a, 0x0b1526);
-  grid.position.y = -0.01;
-  scene.add(grid);
-
-  // Floating data points
-  const pCount = isSmall ? 140 : 260;
-  const pPos = new Float32Array(pCount * 3);
-  for (let i = 0; i < pCount; i++) {
-    pPos[i * 3] = (Math.random() - 0.5) * 34;
-    pPos[i * 3 + 1] = Math.random() * 12 + 1;
-    pPos[i * 3 + 2] = (Math.random() - 0.5) * 34;
+  /* ---------- Particles ---------- */
+  const pos = new Float32Array(N * 3), vel = new Float32Array(N * 3), col = new Float32Array(N * 3), seed = new Float32Array(N);
+  pos.set(shapes[0]);
+  const palette = [new THREE.Color(0xd83f87), new THREE.Color(0x8a5cf6), new THREE.Color(0xe98074), new THREE.Color(0xf5d0e0)];
+  const c = new THREE.Color();
+  for (let i = 0; i < N; i++) {
+    const t = Math.random();
+    if (t < 0.45) c.copy(palette[0]).lerp(palette[1], Math.random());
+    else if (t < 0.8) c.copy(palette[1]).lerp(palette[2], Math.random());
+    else c.copy(palette[3]);
+    col[i * 3] = c.r; col[i * 3 + 1] = c.g; col[i * 3 + 2] = c.b;
+    seed[i] = Math.random() * Math.PI * 2;
   }
-  const pGeo = new THREE.BufferGeometry();
-  pGeo.setAttribute("position", new THREE.BufferAttribute(pPos, 3));
-  const points = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0x64d2ff, size: 0.06, transparent: true, opacity: 0.55, depthWrite: false }));
-  scene.add(points);
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+  geo.setAttribute("color", new THREE.BufferAttribute(col, 3));
 
-  // Interactive ripples: click/tap the background to drop a "data shock" into the terrain.
-  const ripples = [];
-  const raycaster = new THREE.Raycaster();
-  const ground = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
-  const hit = new THREE.Vector3();
-  const pointerNDC = new THREE.Vector2(9, 9);
-  const hover = { x: 0, z: 0, on: false };
-  function groundPoint(clientX, clientY) {
-    pointerNDC.set((clientX / window.innerWidth) * 2 - 1, -(clientY / window.innerHeight) * 2 + 1);
-    raycaster.setFromCamera(pointerNDC, camera);
-    return raycaster.ray.intersectPlane(ground, hit) ? hit.clone() : null;
+  // soft round sprite
+  const sprite = document.createElement("canvas"); sprite.width = sprite.height = 64;
+  const g = sprite.getContext("2d"), grd = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+  grd.addColorStop(0, "rgba(255,255,255,1)"); grd.addColorStop(0.35, "rgba(255,255,255,0.55)"); grd.addColorStop(1, "rgba(255,255,255,0)");
+  g.fillStyle = grd; g.fillRect(0, 0, 64, 64);
+  const mat = new THREE.PointsMaterial({ size: small ? 0.42 : 0.36, map: new THREE.CanvasTexture(sprite), vertexColors: true, transparent: true, opacity: 0.9, depthWrite: false, blending: THREE.AdditiveBlending });
+  const points = new THREE.Points(geo, mat);
+  const group = new THREE.Group(); group.add(points); scene.add(group);
+
+  /* ---------- Interaction ---------- */
+  const mouse = new THREE.Vector2(9, 9), mouseWorld = new THREE.Vector3(999, 999, 0), eased = { x: 0, y: 0 };
+  const ray = new THREE.Raycaster(), plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0), tmp = new THREE.Vector3();
+  const inv = new THREE.Matrix4();
+  function toWorld(cx, cy, out) {
+    mouse.set((cx / window.innerWidth) * 2 - 1, -(cy / window.innerHeight) * 2 + 1);
+    ray.setFromCamera(mouse, camera);
+    if (ray.ray.intersectPlane(plane, tmp)) { inv.copy(group.matrixWorld).invert(); out.copy(tmp).applyMatrix4(inv); return true; }
+    return false;
   }
+  window.addEventListener("pointermove", (e) => { if (!reduceMotion) toWorld(e.clientX, e.clientY, mouseWorld); eased.tx = e.clientX / window.innerWidth - 0.5; eased.ty = e.clientY / window.innerHeight - 0.5; }, { passive: true });
+  window.addEventListener("pointerleave", () => mouseWorld.set(999, 999, 0));
   window.addEventListener("pointerdown", (e) => {
-    if (e.target.closest("a, button, input, textarea, dialog, .glass, .nav")) return;
-    const p = groundPoint(e.clientX, e.clientY);
-    if (p) { ripples.push({ x: p.x, z: p.z, t0: clock.getElapsedTime() }); if (ripples.length > 6) ripples.shift(); }
+    if (reduceMotion || e.target.closest("a, button, input, textarea, dialog, .glass, .lg, .nav")) return;
+    const p = new THREE.Vector3();
+    if (!toWorld(e.clientX, e.clientY, p)) return;
+    for (let i = 0; i < N; i++) {
+      const dx = pos[i * 3] - p.x, dy = pos[i * 3 + 1] - p.y, dz = pos[i * 3 + 2] - p.z;
+      const d = Math.sqrt(dx * dx + dy * dy + dz * dz) + 0.001;
+      const f = 3.2 * Math.exp(-d * 0.18) / d;
+      vel[i * 3] += dx * f; vel[i * 3 + 1] += dy * f; vel[i * 3 + 2] += dz * f;
+    }
   });
-  window.addEventListener("pointermove", (e) => {
-    const p = groundPoint(e.clientX, e.clientY);
-    if (p) { hover.x = p.x; hover.z = p.z; hover.on = true; }
-  }, { passive: true });
 
-  function rippleAt(x, z, now) {
-    let h = 0;
-    for (const r of ripples) {
-      const age = now - r.t0;
-      if (age > 4) continue;
-      const d = Math.hypot(x - r.x, z - r.z);
-      const front = age * 7;
-      h += 2.6 * Math.exp(-age * 0.9) * Math.exp(-Math.pow(d - front, 2) * 0.35);
-    }
-    if (hover.on) {
-      const d2 = (x - hover.x) ** 2 + (z - hover.z) ** 2;
-      h += 1.4 * Math.exp(-d2 / 6);
-    }
-    return h;
-  }
-
-  function heightAt(x, z, t) {
-    // a few travelling waves + a slow "trend" ridge, like overlapping time series
-    const d = Math.sqrt(x * x + z * z);
-    let h = Math.sin(x * 0.45 + t * 0.9) * 0.9
-          + Math.cos(z * 0.38 - t * 0.7) * 0.8
-          + Math.sin(d * 0.55 - t * 1.3) * 1.1
-          + Math.sin((x + z) * 0.22 + t * 0.4) * 0.7;
-    h = h * 0.55 + 1.9 + Math.max(0, 3.2 - d * 0.28);
-    return Math.max(0.08, h + rippleAt(x, z, clock.getElapsedTime()));
-  }
-
-  function update(t) {
-    let i = 0;
-    for (let ix = 0; ix < N; ix++) {
-      for (let iz = 0; iz < N; iz++) {
-        const x = ix * SP - offset;
-        const z = iz * SP - offset;
-        const h = heightAt(x, z, t);
-        dummy.position.set(x, 0, z);
-        dummy.scale.set(1, h, 1);
-        dummy.updateMatrix();
-        bars.setMatrixAt(i, dummy.matrix);
-        const k = Math.min(1, h / 5.2);
-        if (k < 0.6) tmpColor.copy(low).lerp(mid, k / 0.6);
-        else tmpColor.copy(mid).lerp(high, (k - 0.6) / 0.4);
-        bars.setColorAt(i, tmpColor);
-        i++;
-      }
-    }
-    bars.instanceMatrix.needsUpdate = true;
-    if (bars.instanceColor) bars.instanceColor.needsUpdate = true;
-  }
-
-  // Resize
+  /* ---------- Resize / visibility ---------- */
   function resize() {
     const w = canvas.clientWidth, h = canvas.clientHeight;
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
-    target.set(0, 0.5, 0);
-    camera.fov = w < 760 ? 50 : 38;
+    camera.position.z = w < 760 ? 44 : 34;
     camera.updateProjectionMatrix();
   }
-  window.addEventListener("resize", resize);
-  resize();
+  window.addEventListener("resize", resize); resize();
 
-  // Mouse parallax with damped follow (feels alive, never snaps)
-  const mouse = { x: 0, y: 0 }, eased = { x: 0, y: 0 };
-  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches && !reduceMotion) {
-    window.addEventListener("pointermove", (e) => {
-      mouse.x = e.clientX / window.innerWidth - 0.5;
-      mouse.y = e.clientY / window.innerHeight - 0.5;
-    }, { passive: true });
-  }
-
-  // Only render while visible
-  let visible = true;
-  new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; }, { threshold: 0 }).observe(canvas);
-
-  const clock = new THREE.Clock();
-  let scrollY = 0;
+  let scrollY = window.scrollY;
   window.addEventListener("scroll", () => { scrollY = window.scrollY; }, { passive: true });
+  const ease = (x) => x * x * (3 - 2 * x);
+  const clock = new THREE.Clock();
+  eased.tx = 0; eased.ty = 0;
 
-  function frame() {
-    requestAnimationFrame(frame);
-    if (!visible || document.hidden) return;
+  function step() {
     const t = clock.getElapsedTime();
-    update(t * 0.8);
-    eased.x += (mouse.x - eased.x) * 0.04;
-    eased.y += (mouse.y - eased.y) * 0.04;
-    const orbit = t * 0.05;
-    const r = 25;
-    const sp = scrollY / Math.max(1, document.body.scrollHeight - window.innerHeight); // 0..1
-    camera.position.x = Math.sin(orbit + 0.6 + sp * 2.4) * r + eased.x * 4;
-    camera.position.z = Math.cos(orbit + 0.6 + sp * 2.4) * r;
-    camera.position.y = camBase.y - eased.y * 3 + sp * 6;
-    camera.lookAt(target);
-    points.rotation.y = t * 0.02;
+    const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    const sp = Math.min(1, scrollY / max) * (shapes.length - 1);
+    const a = Math.floor(Math.min(sp, shapes.length - 1.0001)), f = ease(sp - a);
+    const A = shapes[a], B = shapes[a + 1];
+    const mx = mouseWorld.x, my = mouseWorld.y, mz = mouseWorld.z;
+    for (let i = 0; i < N; i++) {
+      const k = i * 3, s = seed[i];
+      // target = morph between two shapes + gentle breathing
+      const tx = A[k] + (B[k] - A[k]) * f + Math.sin(t * 0.8 + s) * 0.12;
+      const ty = A[k + 1] + (B[k + 1] - A[k + 1]) * f + Math.cos(t * 0.7 + s) * 0.12;
+      const tz = A[k + 2] + (B[k + 2] - A[k + 2]) * f;
+      // spring toward target
+      vel[k] += (tx - pos[k]) * 0.035; vel[k + 1] += (ty - pos[k + 1]) * 0.035; vel[k + 2] += (tz - pos[k + 2]) * 0.035;
+      // mouse repel
+      const dx = pos[k] - mx, dy = pos[k + 1] - my, dz = pos[k + 2] - mz, d2 = dx * dx + dy * dy + dz * dz;
+      if (d2 < 16) { const fr = (16 - d2) * 0.012; vel[k] += dx * fr; vel[k + 1] += dy * fr; vel[k + 2] += dz * fr; }
+      vel[k] *= 0.86; vel[k + 1] *= 0.86; vel[k + 2] *= 0.86;
+      pos[k] += vel[k]; pos[k + 1] += vel[k + 1]; pos[k + 2] += vel[k + 2];
+    }
+    geo.attributes.position.needsUpdate = true;
+    eased.x += (eased.tx - eased.x) * 0.05; eased.y += (eased.ty - eased.y) * 0.05;
+    group.rotation.y = t * 0.06 + sp * 0.9 + eased.x * 0.5;
+    group.rotation.x = 0.25 + eased.y * 0.3 - sp * 0.05;
     renderer.render(scene, camera);
   }
 
   if (reduceMotion) {
-    update(2.0);
-    camera.lookAt(target);
     renderer.render(scene, camera);
     window.addEventListener("resize", () => renderer.render(scene, camera));
   } else {
-    frame();
+    (function frame() { requestAnimationFrame(frame); if (!document.hidden) step(); })();
   }
   document.documentElement.classList.add("has-3d");
 }
