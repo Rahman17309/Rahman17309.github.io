@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>M A Rahman · Data Analyst</title>
+  <meta name="description" content="M A Rahman: Data Analyst (SQL, Power BI, Python, Excel). Business intelligence, reporting automation, A/B testing and data reconciliation. Ex-Amazon.">
+  <meta property="og:title" content="M A Rahman · Data Analyst">
+  <meta property="og:description" content="Data Analyst · SQL · Power BI · Python · Excel. Ex-Amazon.">
+  <meta property="og:image" content="assets/projects/funnel.jpg">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23000'/><rect x='7' y='17' width='4' height='8' rx='1' fill='%232997ff'/><rect x='14' y='11' width='4' height='14' rx='1' fill='%232997ff'/><rect x='21' y='6' width='4' height='19' rx='1' fill='%23f5f5f7'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="progress" aria-hidden="true"><span></span></div>
+  <canvas class="bg-canvas" id="bg-canvas" aria-hidden="true"></canvas>
+  <div class="bg-veil" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
+    <a class="nav__logo" href="#top" aria-label="M A Rahman, back to top">
+      <img src="assets/profile.jpg" alt="" width="28" height="28">
+      <span>M A Rahman</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav__icons">
+      <a class="icon-btn" href="https://www.linkedin.com/in/rahman17309/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11H3v-11Zm6.5 0h3.83v1.5h.05c.53-1 1.84-2.06 3.79-2.06 4.05 0 4.8 2.67 4.8 6.13v5.43h-4v-4.81c0-1.15-.02-2.63-1.6-2.63-1.6 0-1.85 1.25-1.85 2.55v4.89h-4v-11Z"/></svg>
+      </a>
+      <a class="icon-btn" href="https://github.com/Rahman17309" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.7 5.38-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+      </a>
+      <a class="btn btn--small btn--primary nav__cta" href="assets/MA-Rahman-Resume.pdf" target="_blank" rel="noopener">Resume</a>
+    </div>
+    <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
+  </header>
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <a href="#about">About</a><a href="#work">Work</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+    <div class="mobile-menu__links">
+      <a href="https://www.linkedin.com/in/rahman17309/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/Rahman17309" target="_blank" rel="noopener">GitHub</a>
+      <a href="assets/MA-Rahman-Resume.pdf" target="_blank" rel="noopener">Resume</a>
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- INTRO: face first -->
+    <section class="intro" id="top">
+      <div class="intro__glow" aria-hidden="true"></div>
+      <div class="intro__inner container">
+        <div class="intro__portrait">
+          <div class="portrait-ring" aria-hidden="true"></div>
+          <img src="assets/profile.jpg" alt="Portrait of M A Rahman" width="800" height="800">
+          <span class="status"><span class="status__dot" aria-hidden="true"></span>Open to work</span>
+        </div>
+        <p class="intro__hello reveal-intro">Hi, I'm M A Rahman · <span class="rotator" aria-live="off"><span class="rotator__word">Data Analyst</span><span class="rotator__caret" aria-hidden="true"></span></span></p>
+        <h1 class="intro__title reveal-intro">I turn business data into<br><span class="grad">clear decisions.</span></h1>
+        <p class="intro__lead reveal-intro">Data Analyst with 3+ years in BI, SQL and reporting automation, including Amazon. Based in Hyderabad, India.</p>
+        <div class="intro__actions reveal-intro">
+          <a class="btn btn--primary" href="#work">View my work</a>
+          <a class="btn btn--glass" href="assets/MA-Rahman-Resume.pdf" target="_blank" rel="noopener">Download resume</a>
+        </div>
+        <ul class="intro__social reveal-intro" aria-label="Profiles">
+          <li><a href="https://www.linkedin.com/in/rahman17309/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+          <li><a href="https://github.com/Rahman17309" target="_blank" rel="noopener">GitHub ↗</a></li>
+          <li><a href="mailto:rahmandatascience09@gmail.com">Email ↗</a></li>
+        </ul>
+      </div>
+      <a class="scroll-cue" href="#about" aria-label="Scroll to About"><span></span></a>
+    </section>
+
+    <!-- STATS STRIP -->
+    <section class="stats container" aria-label="Highlights">
+      <div class="stat glass reveal"><b><span class="count" data-to="3">3</span>+</b><span>years in data &amp; business analysis</span></div>
+      <div class="stat glass reveal"><b>Amazon</b><span>Business Analyst, Seller Flex &amp; Transparency</span></div>
+      <div class="stat glass reveal"><b><span class="count" data-to="60">60</span>%</b><span>less manual reporting via automation</span></div>
+      <div class="stat glass reveal"><b><span class="count" data-to="6">6</span></b><span>public analytics projects on GitHub</span></div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section about" id="about">
+      <div class="container about__grid">
+        <div>
+          <p class="eyebrow reveal">About me</p>
+          <h2 class="h2 reveal">Analyst by trade.<br><span class="soft">Finance-literate by background.</span></h2>
+        </div>
+        <div class="about__text">
+          <p class="reveal">I'm a Data Analyst with 3+ years across data analysis, business intelligence and reporting automation, including a Business Analyst role at Amazon. I work in <strong>SQL</strong> (joins, CTEs, window functions), <strong>Power BI</strong> (DAX, Power Query, data modelling), <strong>Python</strong> and <strong>Advanced Excel</strong>.</p>
+          <p class="reveal">My favourite work is the whole loop: clean the data until I trust it, find where the numbers move, size what a fix is worth and test it before anyone ships. I also bring hands-on reconciliation and accounting experience, so finance teams and I speak the same language.</p>
+          <ul class="facts reveal">
+            <li><span>Location</span>Hyderabad, India</li>
+            <li><span>Education</span>B.Tech, JNTU Hyderabad</li>
+            <li><span>Languages</span>English, Hindi, Telugu, Urdu</li>
+            <li><span>Certified</span>NASSCOM · ExcelR · IBM</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section services" aria-labelledby="services-h">
+      <div class="container">
+        <p class="eyebrow reveal">What I do</p>
+        <h2 class="h2 reveal" id="services-h">How I help teams.</h2>
+        <div class="services__grid">
+          <article class="card glass reveal">
+            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h16M8 15l3-4 3 2 5-6"/></svg></span>
+            <h3>Analysis &amp; SQL</h3>
+            <p>Funnels, cohorts, churn and segment deep-dives with CTEs and window functions, starting from data I've validated.</p>
+          </article>
+          <article class="card glass reveal">
+            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M7 15v-3m5 3V9m5 6v-5"/></svg></span>
+            <h3>Dashboards &amp; KPIs</h3>
+            <p>Power BI (DAX, Power Query, star schema) and Sheets dashboards that leadership actually opens.</p>
+          </article>
+          <article class="card glass reveal">
+            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v5h-5"/></svg></span>
+            <h3>Automation &amp; reconciliation</h3>
+            <p>ETL pipelines in SQL, Python and Apps Script, plus daily reconciliation across systems, banks and gateways.</p>
+          </article>
+          <article class="card glass reveal">
+            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 3v6l-5 9a2 2 0 0 0 1.8 3h12.4a2 2 0 0 0 1.8-3l-5-9V3M8 3h8"/></svg></span>
+            <h3>Experiments &amp; models</h3>
+            <p>A/B tests done properly, forecasting and classification when a model is the right tool for the question.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section class="section work" id="work" aria-labelledby="work-h">
+      <div class="container">
+        <div class="work__head">
+          <div>
+            <p class="eyebrow reveal">Selected work</p>
+            <h2 class="h2 reveal" id="work-h">Projects, with the numbers.</h2>
+          </div>
+          <div class="filters reveal" role="group" aria-label="Filter projects">
+            <button class="chip is-active" data-filter="all" aria-pressed="true">All</button>
+            <button class="chip" data-filter="analytics" aria-pressed="false">Analytics</button>
+            <button class="chip" data-filter="ml" aria-pressed="false">Machine learning</button>
+            <button class="chip" data-filter="forecast" aria-pressed="false">Forecasting</button>
+          </div>
+        </div>
+
+        <div class="cards" id="cards">
+          <article class="pcard glass reveal" data-cat="analytics" data-more="End-to-end analysis of 80,000 e-commerce sessions. Built a cleaning pipeline (bot detection, duplicate events, mixed timestamps, test orders), segmented the funnel with DuckDB SQL (CTEs, UNPIVOT, window functions, QUALIFY), sized each fix in rupees and analysed the one-page checkout A/B test with SRM, balance, guardrail, Bonferroni and regression checks. Ships with an interactive Plotly dashboard.">
+            <button class="pcard__media" type="button" aria-label="Quick view of this project"><img src="assets/projects/funnel.jpg" alt="" loading="lazy" width="1200" height="750">
+              <span class="badge">New</span><span class="pcard__qv" aria-hidden="true">Quick view</span></button>
+            <div class="pcard__body">
+              <p class="pcard__kicker">E-commerce · A/B testing</p>
+              <h3><a href="https://github.com/Rahman17309/product-funnel-conversion-analytics" target="_blank" rel="noopener">Product Funnel &amp; Conversion Optimization</a></h3>
+              <p>Cleaned 285k clickstream events, segmented the funnel in SQL, sized each fix in ₹ and tested a one-page checkout.</p>
+              <ul class="kpis"><li><b>+17%</b> conversion</li><li><b>₹26 L/yr</b> opportunity</li></ul>
+              <ul class="tags"><li>SQL</li><li>Python</li><li>A/B test</li><li>Plotly</li></ul>
+              <div class="pcard__links"><a href="https://github.com/Rahman17309/product-funnel-conversion-analytics" target="_blank" rel="noopener">Case study ↗</a></div>
+            </div>
+          </article>
+
+          <article class="pcard glass reveal" data-cat="ml" data-more="Classifies companies by bankruptcy risk from six qualitative ratings. Found that 147 of 250 rows were exact duplicates and removed them before splitting, handled class imbalance with SMOTE, and compared Logistic Regression, Decision Tree, Random Forest, Gradient Boosting and SVM with GridSearchCV and RandomizedSearchCV. Competitiveness, credibility and financial flexibility drive the risk. Deployed as a Streamlit app.">
+            <button class="pcard__media" type="button" aria-label="Quick view of this project"><img src="assets/projects/bankruptcy.jpg" alt="" loading="lazy" width="1200" height="750"><span class="pcard__qv" aria-hidden="true">Quick view</span></button>
+            <div class="pcard__body">
+              <p class="pcard__kicker">Credit risk · Classification</p>
+              <h3><a href="https://github.com/Rahman17309/Bankruptcy-Prevention-Project" target="_blank" rel="noopener">Bankruptcy Risk Prediction</a></h3>
+              <p>Early-warning model for credit teams. Removed 147 duplicate rows before they could inflate scores; five models tuned.</p>
+              <ul class="kpis"><li><b>0.996</b> CV score</li><li><b>5</b> models compared</li></ul>
+              <ul class="tags"><li>scikit-learn</li><li>SMOTE</li><li>Streamlit</li></ul>
+              <div class="pcard__links"><a href="https://github.com/Rahman17309/Bankruptcy-Prevention-Project" target="_blank" rel="noopener">Code ↗</a><a href="https://youtu.be/jHw8JbTdTC4" target="_blank" rel="noopener">Demo ↗</a></div>
+            </div>
+          </article>
+
+          <article class="pcard glass reveal" data-cat="ml" data-more="Scraped e-commerce reviews across five categories, cleaned and lemmatised the text with NLTK, labelled sentiment with VADER and compared seven models on TF-IDF features with SMOTE. Logistic Regression beat the LSTM/GRU models at this data size. Served through a Streamlit app.">
+            <button class="pcard__media" type="button" aria-label="Quick view of this project"><img src="assets/projects/nlp.jpg" alt="" loading="lazy" width="1200" height="750"><span class="pcard__qv" aria-hidden="true">Quick view</span></button>
+            <div class="pcard__body">
+              <p class="pcard__kicker">NLP · Customer insight</p>
+              <h3><a href="https://github.com/Rahman17309/NLP-Sentiment-Classification-Analysis" target="_blank" rel="noopener">Review Sentiment Analysis</a></h3>
+              <p>Scraped and cleaned product reviews, labelled sentiment and compared seven models so negative feedback surfaces automatically.</p>
+              <ul class="kpis"><li><b>96%</b> accuracy</li><li><b>0.92</b> macro-F1</li></ul>
+              <ul class="tags"><li>NLTK</li><li>scikit-learn</li><li>TensorFlow</li></ul>
+              <div class="pcard__links"><a href="https://github.com/Rahman17309/NLP-Sentiment-Classification-Analysis" target="_blank" rel="noopener">Code ↗</a><a href="https://youtu.be/ChRp_Pf63jE" target="_blank" rel="noopener">Demo ↗</a></div>
+            </div>
+          </article>
+
+          <article class="pcard glass reveal" data-cat="ml" data-more="Predicts solar power generated per 3-hour period from weather features. Distance to solar noon and humidity are the strongest drivers. Eight regressors were compared and Gradient Boosting was tuned over 243 configurations, then deployed in Streamlit.">
+            <button class="pcard__media" type="button" aria-label="Quick view of this project"><img src="assets/projects/solar.jpg" alt="" loading="lazy" width="1200" height="750"><span class="pcard__qv" aria-hidden="true">Quick view</span></button>
+            <div class="pcard__body">
+              <p class="pcard__kicker">Energy · Regression</p>
+              <h3><a href="https://github.com/Rahman17309/Solar-Power-Prediction" target="_blank" rel="noopener">Solar Power Prediction</a></h3>
+              <p>Predicts solar output from weather so operators can plan supply. Eight regressors compared; Gradient Boosting deployed.</p>
+              <ul class="kpis"><li><b>0.90</b> R² test</li><li><b>0.85</b> R² CV</li></ul>
+              <ul class="tags"><li>scikit-learn</li><li>Streamlit</li></ul>
+              <div class="pcard__links"><a href="https://github.com/Rahman17309/Solar-Power-Prediction" target="_blank" rel="noopener">Code ↗</a><a href="https://youtu.be/sFNEGxjOMiI" target="_blank" rel="noopener">Demo ↗</a></div>
+            </div>
+          </article>
+
+          <article class="pcard glass reveal" data-cat="forecast" data-more="Forecasts AAPL's closing price 30 days ahead from 2,011 trading days (2012–2019). Compares ARIMA, SARIMA, Holt-Winters, Prophet and LSTM on a time-ordered split, with a clear note on comparing models at the same horizon. Includes a Streamlit forecast app.">
+            <button class="pcard__media" type="button" aria-label="Quick view of this project"><img src="assets/projects/apple.jpg" alt="" loading="lazy" width="1200" height="750"><span class="pcard__qv" aria-hidden="true">Quick view</span></button>
+            <div class="pcard__body">
+              <p class="pcard__kicker">Finance · Time series</p>
+              <h3><a href="https://github.com/Rahman17309/Apple-Stock-Forecasting" target="_blank" rel="noopener">Apple Stock Forecasting</a></h3>
+              <p>30-day AAPL forecast comparing ARIMA, SARIMA, Holt-Winters, Prophet and LSTM on 8 years of daily prices.</p>
+              <ul class="kpis"><li><b>5</b> models</li><li><b>$6</b> LSTM RMSE</li></ul>
+              <ul class="tags"><li>statsmodels</li><li>Prophet</li><li>Keras</li></ul>
+              <div class="pcard__links"><a href="https://github.com/Rahman17309/Apple-Stock-Forecasting" target="_blank" rel="noopener">Code ↗</a><a href="https://www.youtube.com/watch?v=r2wZKC7ocJk" target="_blank" rel="noopener">Demo ↗</a></div>
+            </div>
+          </article>
+
+          <article class="pcard pcard--text glass reveal" data-cat="analytics ml forecast">
+            <div class="pcard__body">
+              <p class="pcard__kicker">Coursework</p>
+              <p class="big-num">26</p>
+              <h3><a href="https://github.com/Rahman17309/ExcelR-Data-Science-Assignments" target="_blank" rel="noopener">Data Science Notebooks</a></h3>
+              <p>Statistics, hypothesis testing, regression, classification, clustering, recommendation systems and forecasting from the ExcelR certification.</p>
+              <div class="pcard__links"><a href="https://github.com/Rahman17309/ExcelR-Data-Science-Assignments" target="_blank" rel="noopener">Browse notebooks ↗</a></div>
+            </div>
+          </article>
+        </div>
+        <p class="more reveal"><a href="https://github.com/Rahman17309" target="_blank" rel="noopener">New project every week. Follow along on GitHub ↗</a></p>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="section experience" id="experience" aria-labelledby="exp-h">
+      <div class="container">
+        <p class="eyebrow reveal">Experience</p>
+        <h2 class="h2 reveal" id="exp-h">Where I've done the work.</h2>
+        <ol class="timeline">
+          <li class="timeline__line" aria-hidden="true"><span class="timeline__fill"></span></li>
+          <li class="job glass reveal">
+            <span class="job__dot" aria-hidden="true"></span>
+            <div class="job__head"><h3>Data Analyst <span>PDA Infotech</span></h3><p class="job__when">Nov 2024 – Jul 2026 · Dubai, UAE</p></div>
+            <ul>
+              <li>SQL in BigQuery and PostgreSQL powering churn, CLV and segmentation models: 18% higher retention, 25% better trial-to-paid conversion.</li>
+              <li>Power BI dashboards (DAX, Power Query, data modelling) for Sales, Marketing, Finance and Customer Success.</li>
+              <li>Automated ETL with SQL, Python and the Google Sheets API, cutting manual reporting effort by 60%.</li>
+              <li>Built a daily reconciliation process matching internal systems, bank statements and payment gateways.</li>
+            </ul>
+          </li>
+          <li class="job glass reveal">
+            <span class="job__dot" aria-hidden="true"></span>
+            <div class="job__head"><h3>Data Science Intern <span>AI Variant</span></h3><p class="job__when">Jun 2023 – Aug 2024 · Hyderabad</p></div>
+            <ul>
+              <li>EDA, data cleaning and feature engineering on large datasets with Python and SQL.</li>
+              <li>Predictive and time-series models (Logistic Regression, Random Forest, XGBoost, ARIMA, Prophet, LSTM) for client projects.</li>
+              <li>NLP sentiment pipeline with automated web scraping; defined and presented KPIs to management.</li>
+            </ul>
+          </li>
+          <li class="job glass reveal">
+            <span class="job__dot" aria-hidden="true"></span>
+            <div class="job__head"><h3>Business Analyst <span>Amazon</span></h3><p class="job__when">May 2022 – May 2023 · Hyderabad</p></div>
+            <ul>
+              <li>Excel VBA automation of seller support and daily operations, cutting processing time by 15%.</li>
+              <li>SQL-based catalog ETL (Hubble) improving catalog data accuracy; KPI trackers for operations.</li>
+              <li>Wrote the SOP for the Transparency program; partnered on Seller Flex and Transparency initiatives.</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section skills" id="skills" aria-labelledby="skills-h">
+      <div class="container">
+        <p class="eyebrow reveal">Skills</p>
+        <h2 class="h2 reveal" id="skills-h">Tools I work with every day.</h2>
+        <div class="skills__grid">
+          <div class="card glass reveal"><h3>BI &amp; visualisation</h3><ul class="chips"><li>Power BI</li><li>DAX</li><li>Power Query</li><li>Data modelling</li><li>Tableau</li><li>KPI &amp; MIS reporting</li></ul></div>
+          <div class="card glass reveal"><h3>SQL &amp; databases</h3><ul class="chips"><li>SQL</li><li>BigQuery</li><li>PostgreSQL</li><li>MySQL</li><li>CTEs &amp; window functions</li><li>Query optimisation</li></ul></div>
+          <div class="card glass reveal"><h3>Python &amp; automation</h3><ul class="chips"><li>pandas</li><li>NumPy</li><li>Plotly</li><li>scikit-learn</li><li>Apps Script</li><li>ETL pipelines</li><li>REST APIs</li></ul></div>
+          <div class="card glass reveal"><h3>Excel</h3><ul class="chips"><li>Advanced Excel</li><li>VBA macros</li><li>Pivot tables</li><li>XLOOKUP</li><li>Power Pivot</li><li>Google Sheets</li></ul></div>
+          <div class="card glass reveal"><h3>Analytics</h3><ul class="chips"><li>A/B testing</li><li>Hypothesis testing</li><li>Regression</li><li>Forecasting</li><li>Cohort &amp; churn</li><li>Root-cause analysis</li></ul></div>
+          <div class="card glass reveal"><h3>Data management</h3><ul class="chips"><li>Data cleaning</li><li>Validation</li><li>Data quality</li><li>Governance</li><li>Reconciliation</li><li>Git &amp; GitHub</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section contact" id="contact" aria-labelledby="contact-h">
+      <div class="container">
+        <div class="contact__card glass reveal">
+          <p class="eyebrow">Contact</p>
+          <h2 class="contact__title" id="contact-h">Let's work together.</h2>
+          <p class="contact__lead">Open to Data Analyst roles and freelance analytics work. Email is the fastest way to reach me.</p>
+          <p class="contact__email"><a href="mailto:rahmandatascience09@gmail.com">rahmandatascience09@gmail.com</a></p>
+          <div class="contact__actions">
+            <button class="btn btn--primary copy" type="button" data-copy="rahmandatascience09@gmail.com">Copy email</button>
+            <a class="btn btn--glass" href="https://www.linkedin.com/in/rahman17309/" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn btn--glass" href="https://github.com/Rahman17309" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn btn--glass" href="assets/MA-Rahman-Resume.pdf" target="_blank" rel="noopener">Resume</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer container">
+    <p>© <span id="year">2026</span> M A Rahman · Hyderabad, India</p>
+    <ul>
+      <li><a href="https://www.linkedin.com/in/rahman17309/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://github.com/Rahman17309" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="assets/MA-Rahman-Resume.pdf" target="_blank" rel="noopener">Resume</a></li>
+    </ul>
+  </footer>
+
+  <a class="to-top" href="#top" aria-label="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6"/></svg></a>
+  <div class="toast" role="status" aria-live="polite"></div>
+  <p class="hint-chip" aria-hidden="true">✦ Tip: click the background to send a ripple through the data</p>
+  <div class="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__ring"></span></div>
+
+  <dialog class="modal" id="project-modal" aria-labelledby="modal-title">
+    <div class="modal__inner">
+      <button class="modal__close" type="button" aria-label="Close">✕</button>
+      <div class="modal__media"><img alt="" id="modal-img"></div>
+      <div class="modal__body">
+        <p class="modal__kicker" id="modal-kicker"></p>
+        <h3 id="modal-title"></h3>
+        <p id="modal-desc"></p>
+        <ul class="kpis" id="modal-kpis"></ul>
+        <ul class="tags" id="modal-tags"></ul>
+        <div class="modal__links" id="modal-links"></div>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/ScrollTrigger.min.js"></script>
+  <script type="importmap">{ "imports": { "three": "./vendor/three.module.min.js" } }</script>
+  <script type="module" src="js/hero.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/interact.js"></script>
+</body>
+</html>
