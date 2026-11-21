@@ -52,8 +52,9 @@
     // Hero: pills and bubbles float with the mouse at different depths
     const floaters = [...document.querySelectorAll(".intro .pill, .intro .bubble")];
     const face = document.querySelector(".hero-face img");
+    const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
     window.addEventListener("pointermove", (e) => {
-      if (window.scrollY > window.innerHeight) return;
+      if (!finePointer.matches || window.scrollY > window.innerHeight) return;
       const x = e.clientX / window.innerWidth - 0.5, y = e.clientY / window.innerHeight - 0.5;
       floaters.forEach((el, i) => { const d = 10 + (i % 3) * 8; el.style.translate = `${-x * d}px ${-y * d}px`; });
       if (face) face.style.transform = `translate(${x * 10}px, ${y * 6}px)`;

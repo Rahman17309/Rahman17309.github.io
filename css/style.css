@@ -530,3 +530,17 @@ strong { color: var(--ink); font-weight: 500; }
 @media (max-width: 860px) { .about__photo { max-width: 200px; margin: 20px auto 0; } }
 .about__photo { max-width: 220px; }
 @media (max-width: 860px) { .about__photo { max-width: 180px; margin: 20px 0 0; } }
+/* Mobile hero: skills in a tidy centred row, bubbles level above the name, nothing moves on touch */
+@media (max-width: 860px) {
+  .intro { display: flex; flex-direction: column; align-items: center; padding-top: 118px; }
+  .pills { position: relative; inset: auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 340px; margin: 0 auto; padding: 0 12px; }
+  .pills .pill, .pills .pill:nth-child(n) { position: static; display: inline-block; left: auto; top: auto; transform: none; animation: none; translate: none !important; }
+  .pills .pill:nth-child(n+5) { display: inline-block; }
+  .hero-word { top: 36%; }
+  .hero-face { bottom: 60px; width: min(100vw, 460px); }
+  .hero-face img { transform: none !important; }
+  .bubble, .bubble--left, .bubble--right { transform: none; translate: none !important; bottom: calc(84px + 15vw * 0.9); font-size: 13px; padding: 8px 12px; }
+  .bubble--left { left: 14px; right: auto; }
+  .bubble--right { right: 14px; left: auto; }
+}
+@media (max-width: 360px) { .bubble { font-size: 12px; } }
