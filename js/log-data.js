@@ -1,12 +1,19 @@
 // Build log: newest first. Add one entry per working day.
 // status: "building" marks the current project (shown in the banner with its progress).
 window.BUILD_NOW = {
-  project: "Product Funnel & Conversion Optimization",
-  link: "work/product-funnel.html",
-  day: 3, of: 3,
-  next: "Project complete. The next weekly project starts Monday",
+  project: "Finance / CFO Dashboard (Power BI)",
+  link: "https://github.com/Rahman17309/Finance-CFO-Dashboard-PowerBI",
+  day: 1, of: 1,
+  next: "Project complete. Next up: Sales & Profitability dashboard in Power BI",
 };
 window.BUILD_LOG = [
+  {
+    date: "2026-11-22", tag: "Power BI · Finance", title: "Finance / CFO Dashboard shipped",
+    items: ["Star schema (4 facts, 6 dims), fiscal-year date table and 48 DAX measures",
+            "Found why profit fell 3% while revenue grew 10%: South-region COGS (+5.7 pts) and H2 marketing overspend",
+            "Receivables ageing and cash flow pages; saved as PBIP/TMDL for Git"],
+    link: "https://github.com/Rahman17309/Finance-CFO-Dashboard-PowerBI",
+  },
   {
     date: "2026-11-22", tag: "Funnel project · Day 3", title: "Recommendations report and final write-up",
     items: ["Prioritised 5 fixes by ₹ value, confidence and effort: checkout rollout first (~₹32 L/yr)",
