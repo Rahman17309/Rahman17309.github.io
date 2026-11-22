@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Finance / CFO Dashboard (Power BI) · M A Rahman</title>
+  <meta name="description" content="Revenue grew 10% but net profit fell 3%. A three-page Power BI report that finds why, sizes the fix at about ₹6 Cr a year, and tracks receivables and cash flow.">
+  <meta property="og:title" content="Finance / CFO Dashboard (Power BI) · M A Rahman, Data Analyst">
+  <meta property="og:description" content="Revenue grew 10% but net profit fell 3%. A three-page Power BI report that finds why, sizes the fix at about ₹6 Cr a year, and tracks receivables and cash flow.">
+  <meta property="og:image" content="https://rahman17309.github.io/assets/projects/finance-cfo.jpg">
+  <meta property="og:url" content="https://rahman17309.github.io/work/finance-cfo-dashboard.html">
+  <meta property="og:type" content="article">
+  <meta name="theme-color" content="#1b1028">
+  <link rel="icon" href="../assets/profile.jpg">
+  <link rel="stylesheet" href="../css/style.css?v=9">
+  <link rel="stylesheet" href="../css/case.css?v=9">
+</head>
+<body class="case">
+  <header class="nav case-nav" id="nav">
+    <a class="nav__logo" href="../index.html#top"><img src="../assets/profile.jpg" alt="" width="32" height="32"><span>M A Rahman</span></a>
+    <a class="case-back" href="../index.html#work">← All projects</a>
+    <a class="btn btn--small btn--primary nav__cta" href="../assets/MA_Rahman_Data_Analyst_Resume.pdf" download="MA_Rahman_Data_Analyst_Resume.pdf">Resume</a>
+  </header>
+  <main class="container case-main">
+    <section class="case-hero">
+      <p class="eyebrow">Finance · Power BI · Budget &amp; cash flow</p>
+      <h1>Finance / CFO Dashboard</h1>
+      <p class="case-lead">Revenue grew 10% but net profit fell 3%. Why, and what should the CFO do? I built a three-page Power BI report that answers that, and also tracks budget variance, receivables and cash flow.</p>
+      <p class="case-meta"><span>Solo project · end to end</span><span>Nov 2026</span></p>
+      <div class="case-links"><a class="btn btn--primary" href="https://github.com/Rahman17309/Finance-CFO-Dashboard-PowerBI" target="_blank" rel="noopener">View code &amp; .pbix on GitHub ↗</a><a class="btn btn--glass" href="https://github.com/Rahman17309/Finance-CFO-Dashboard-PowerBI/blob/main/DAX_Measures.md" target="_blank" rel="noopener">See the DAX measures ↗</a></div>
+      <ul class="case-kpis"><li class="glass"><b>+10.3%</b><span>revenue growth FY26</span></li><li class="glass"><b>−2.8%</b><span>net profit despite that growth</span></li><li class="glass"><b>~₹6 Cr/yr</b><span>profit the fixes can recover</span></li><li class="glass"><b>48</b><span>DAX measures</span></li></ul>
+      <img class="case-cover glass" src="../assets/projects/finance-cfo.jpg" alt="" width="1200" height="750">
+    </section>
+    <section class="case-sec"><h2>The problem</h2><p>Nova Retail Pvt Ltd, a fictional retailer with six branches across India, grew revenue from ₹155.5 Cr to ₹171.5 Cr in FY2025-26. Net profit still went down, and the company missed its profit budget by 20.6%. The CFO wanted to know where margin was leaking, which accounts were off budget, and whether customers were paying on time.</p></section>
+    <section class="case-sec"><h2>The data</h2><p>A reproducible synthetic dataset covering two Indian fiscal years (April to March): a monthly general ledger and budget by branch and account, 5,128 customer invoices with due and paid dates, and 2,529 supplier bills. The generator builds in realistic seasonality and the business problems the report has to find.</p></section>
+    <section class="case-sec"><h2>Approach</h2><ol class="case-steps"><li><h3>Data model</h3><p>A star schema with 4 fact tables (ledger, budget, invoices, bills) and 6 dimension tables, plus a DAX date table with fiscal year, quarter and month.</p></li><li><h3>Power Query</h3><p>All sources load through one folder parameter, so the report refreshes on any machine.</p></li><li><h3>DAX measures</h3><p>48 measures in display folders: P&amp;L and margins, budget variance, year-on-year and fiscal year-to-date, receivables ageing, and cash flow by paid date using inactive relationships with USERELATIONSHIP.</p></li><li><h3>Report design</h3><p>Three pages (Executive Summary, P&amp;L &amp; Budget, Receivables &amp; Cash) with synced fiscal-year and region slicers.</p></li><li><h3>Version control</h3><p>Saved in PBIP/TMDL format, so the model and every visual are text files with a reviewable Git history.</p></li></ol></section>
+    <section class="case-sec"><h2>What I found</h2><ul class="case-list"><li>Gross margin fell from 46.2% to 43.9%. The whole drop is in the South region, where cost of goods rose from 53.8% to 59.5% of revenue. The other regions stayed at about 54%.</li><li>Marketing jumped from about 4.5% to 7.4% of revenue in the second half of FY26 (+44% spend), with no matching rise in sales.</li><li>Distributors now pay 40 days late on average (25 days in FY25) and hold about half of all overdue receivables. Other customer types pay within about 8 days of the due date.</li></ul><div class="case-table glass"><table><caption>Recommended actions</caption><thead><tr><th>Priority</th><th>Action</th><th>Estimated impact</th></tr></thead><tbody><tr><td>1</td><td>Renegotiate South supplier contracts and review pricing to bring COGS back to ~54%</td><td>~₹3.7 Cr / year</td></tr><tr><td>2</td><td>Cap marketing at 5% of revenue and approve campaigns on ROI</td><td>~₹2.6 Cr / year</td></tr><tr><td>3</td><td>Tighten distributor credit terms and stop supply beyond 60 days overdue</td><td>Frees cash from ₹5.8 Cr overdue</td></tr></tbody></table></div></section>
+    <section class="case-sec"><h2>Dashboard pages</h2><div class="case-figs"><figure class="glass"><img src="../assets/cases/finance/01_executive_summary.webp" alt="Executive Summary page with KPI cards and trends" loading="lazy"><figcaption>Executive Summary: KPIs, actual vs budget, margin trend and key insights</figcaption></figure><figure class="glass"><img src="../assets/cases/finance/02_pnl_budget.webp" alt="P&amp;L and budget variance page" loading="lazy"><figcaption>P&amp;L &amp; Budget: statement, revenue-to-profit bridge and variance by account</figcaption></figure><figure class="glass"><img src="../assets/cases/finance/03_receivables_cash.webp" alt="Receivables and cash flow page" loading="lazy"><figcaption>Receivables &amp; Cash: ageing, days paid late by segment and monthly cash flow</figcaption></figure></div></section>
+    <section class="case-sec case-insight glass"><h2>The key insight</h2><p>Headline growth hid two separate problems. Revenue was up, so the business looked healthy, but cost of goods in one region and unplanned marketing spend absorbed all of the extra gross profit. Fixing those two items recovers about ₹6 Cr a year, which closes most of the ₹6.9 Cr gap to the profit budget.</p></section>
+    <section class="case-sec"><h2>Limitations &amp; next steps</h2><ul class="case-list"><li>The data is synthetic, built to mirror real retail finance patterns; the model and measures work the same on a real ledger export.</li><li>Next: add a 13-week cash-flow forecast and row-level security so each regional manager sees only their branches.</li></ul></section>
+    <section class="case-sec"><h2>Tools</h2><ul class="tags"><li>Power BI</li><li>DAX</li><li>Power Query (M)</li><li>Star schema</li><li>PBIP / TMDL</li><li>Python (pandas)</li></ul></section>
+    <nav class="case-pager" aria-label="More projects">
+      <a class="glass" href="product-funnel.html"><span>← Previous</span>Product Funnel &amp; Conversion Optimization</a>
+      <a class="glass" href="bankruptcy-risk.html"><span>Next →</span>Bankruptcy Risk Prediction</a>
+    </nav>
+  </main>
+  <footer class="footer container"><p>© 2026 M A Rahman · <a href="mailto:rahmandatascience09@gmail.com">rahmandatascience09@gmail.com</a></p></footer>
+  <script data-goatcounter="https://rahman17309.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
