@@ -3,10 +3,17 @@
 window.BUILD_NOW = {
   project: "Product Funnel & Conversion Optimization",
   link: "work/product-funnel.html",
-  day: 2, of: 3,
-  next: "Final recommendations report and a full project write-up",
+  day: 3, of: 3,
+  next: "Project complete. The next weekly project starts Monday",
 };
 window.BUILD_LOG = [
+  {
+    date: "2026-11-22", tag: "Funnel project · Day 3", title: "Recommendations report and final write-up",
+    items: ["Prioritised 5 fixes by ₹ value, confidence and effort: checkout rollout first (~₹32 L/yr)",
+            "Risk register and next experiments with power analysis (sample size and duration)",
+            "Fresh-clone check: pipeline, 7 SQL queries and 4 notebooks run end to end"],
+    link: "https://github.com/Rahman17309/product-funnel-conversion-analytics/blob/main/reports/recommendations.md",
+  },
   {
     date: "2026-11-21", tag: "Funnel project · Day 2", title: "SQL deep-dive, A/B test and dashboard",
     items: ["7 DuckDB queries: segment funnels, weakest step per segment, timing, payment failures, ₹ opportunity sizing",

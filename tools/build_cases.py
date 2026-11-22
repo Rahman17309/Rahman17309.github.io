@@ -33,10 +33,10 @@ CASES = [
             ("assets/cases/funnel/08_segment_heatmap.webp", "Step conversion by segment: where each segment under-performs"),
             ("assets/cases/funnel/10_opportunity_sizing.webp", "Revenue opportunity for each lever"),
             ("assets/cases/funnel/11_ab_test_results.webp", "One-page checkout A/B test results")],
-    insight="Conversion rose from about 2.4% to 4.0% over the quarter, but returning visitors rose from 23% to 79% of traffic at the same time. A before/after comparison would have wrongly credited the new checkout, so the decision rests on the randomised A/B test: 3.55% → 4.16% (+0.61 pp, 95% CI +0.25 to +0.98 pp). Recommendation: roll out to mobile now and to desktop with a small holdout.",
+    insight="Conversion rose from about 2.4% to 4.0% over the quarter, but returning visitors rose from 23% to 79% of traffic at the same time. A before/after comparison would have wrongly credited the new checkout, so the decision rests on the randomised A/B test: 3.55% → 4.16% (+0.61 pp, 95% CI +0.25 to +0.98 pp). Recommendation: roll out to mobile now and to desktop with a small holdout, then fix page speed (~₹11 L/yr, to be confirmed by a test).",
     limits=["The data is synthetic, built to mirror real e-commerce patterns; the method transfers directly to a real export.", "Opportunities overlap (slow pages are mostly mobile), so the ₹ figures are not additive."],
     tools=["SQL (DuckDB)", "Python", "pandas", "statsmodels", "Plotly", "Jupyter"],
-    links=[("View code on GitHub", GH + "product-funnel-conversion-analytics"), ("Open the live dashboard", "funnel-dashboard.html")],
+    links=[("View code on GitHub", GH + "product-funnel-conversion-analytics"), ("Read the recommendations report", GH + "product-funnel-conversion-analytics/blob/main/reports/recommendations.md"), ("Open the live dashboard", "funnel-dashboard.html")],
     embed="funnel-dashboard.html",
   ),
   dict(
