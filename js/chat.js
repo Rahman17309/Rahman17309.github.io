@@ -35,7 +35,7 @@
     { k: ["where", "location", "based", "city", "relocat", "remote", "hyderabad"], a: "Based in Hyderabad, India, and open to Data Analyst roles. For relocation or remote arrangements, best to ask him directly at " + link("mailto:rahmandatascience09@gmail.com", "rahmandatascience09@gmail.com") + "." },
     { k: ["hire", "available", "availability", "open to", "freelance", "opportunit", "role", "position", "join"], a: "Yes, he's <b>open to Data Analyst roles</b> and freelance analytics work. The fastest way is email: " + link("mailto:rahmandatascience09@gmail.com", "rahmandatascience09@gmail.com") + "." },
     { k: ["contact", "email", "mail", "reach", "phone", "call", "linkedin", "connect"], a: "📧 " + link("mailto:rahmandatascience09@gmail.com", "rahmandatascience09@gmail.com") + "<br>💼 " + link("https://www.linkedin.com/in/rahman17309/", "LinkedIn") + "<br>💻 " + link(GH, "GitHub") },
-    { k: ["resume", "cv"], a: "Here's his resume: " + '<a href="assets/MA_Rahman_Data_Analyst_Resume.pdf" download>download PDF</a>' + "." },
+    { k: ["resume", "cv"], a: "Here's his resume: " + '<a href="assets/MA_Rahman_Data_Analyst_Resume.pdf" target="_blank" rel="noopener">open the PDF</a>' + "." },
     { k: ["salary", "ctc", "package", "notice period", "expected"], a: "That's best discussed with him directly. Email " + link("mailto:rahmandatascience09@gmail.com", "rahmandatascience09@gmail.com") + " and he'll get back to you." },
     { k: ["thank", "thanks", "great", "awesome", "cool", "nice"], a: "You're welcome! Anything else you'd like to know? 😊" },
     { k: ["bye", "goodbye", "see you"], a: "Thanks for visiting! Feel free to reach out any time. 👋" },
