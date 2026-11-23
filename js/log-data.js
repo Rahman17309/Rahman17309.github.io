@@ -1,12 +1,19 @@
 // Build log: newest first. Add one entry per working day.
 // status: "building" marks the current project (shown in the banner with its progress).
 window.BUILD_NOW = {
-  project: "Finance / CFO Dashboard (Power BI)",
-  link: "https://github.com/Rahman17309/Finance-CFO-Dashboard-PowerBI",
-  day: 1, of: 1,
-  next: "Project complete. Next up: Sales & Profitability dashboard in Power BI",
+  project: "Transaction Reconciliation Engine (ledger ↔ gateway ↔ bank)",
+  link: "https://github.com/Rahman17309",
+  day: 1, of: 7,
+  next: "Day 2: EDA of the gaps by day, payment method and amount, and gateway fee rate vs contract",
 };
 window.BUILD_LOG = [
+  {
+    date: "2026-11-23", tag: "Reconciliation · Day 1", title: "Three-way reconciliation: data and data quality",
+    items: ["Realistic October close: ERP ledger, gateway report, payout file and bank statement, with labelled problems for scoring",
+            "Cleaning pipeline with 16 logged rules (duplicates, test rows, paise, UTC vs IST, messy refs) and 18/18 validation checks",
+            "First control totals don't tie: ledger net ₹1.95 cr vs bank PayFlux credits ₹1.86 cr"],
+    link: "https://github.com/Rahman17309",
+  },
   {
     date: "2026-11-22", tag: "Power BI · Finance", title: "Finance / CFO Dashboard shipped",
     items: ["Star schema (4 facts, 6 dims), fiscal-year date table and 48 DAX measures",
