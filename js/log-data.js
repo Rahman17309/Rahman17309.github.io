@@ -2,17 +2,24 @@
 // status: "building" marks the current project (shown in the banner with its progress).
 window.BUILD_NOW = {
   project: "Transaction Reconciliation Engine (ledger ↔ gateway ↔ bank)",
-  link: "https://github.com/Rahman17309",
-  day: 1, of: 7,
-  next: "Day 2: EDA of the gaps by day, payment method and amount, and gateway fee rate vs contract",
+  link: "https://github.com/Rahman17309/transaction-reconciliation-engine",
+  day: 2, of: 7,
+  next: "Day 3: SQL matching rules in DuckDB (exact, normalised, ±₹1 tolerance, cut-off window, payout ↔ transactions) and the exception register",
 };
 window.BUILD_LOG = [
   {
+    date: "2026-11-24", tag: "Reconciliation · Day 2", title: "EDA: where the ledger, gateway and bank disagree",
+    items: ["First-pass order-id match: 97.7% exact; 468 keys (₹4.30 L) need a decision",
+            "112 of 277 \"missing\" rows were a cut-off artefact: gateway report pulled in UTC, books in IST",
+            "Gateway charging above contract: wallet MDR 2.00% → 2.25% from 15 Oct; 87 card payments at 2.4% vs 1.9%"],
+    link: "https://github.com/Rahman17309/transaction-reconciliation-engine",
+  },
+  {
     date: "2026-11-23", tag: "Reconciliation · Day 1", title: "Three-way reconciliation: data and data quality",
-    items: ["Realistic October close: ERP ledger, gateway report, payout file and bank statement, with labelled problems for scoring",
-            "Cleaning pipeline with 16 logged rules (duplicates, test rows, paise, UTC vs IST, messy refs) and 18/18 validation checks",
-            "First control totals don't tie: ledger net ₹1.95 cr vs bank PayFlux credits ₹1.86 cr"],
-    link: "https://github.com/Rahman17309",
+    items: ["Seeded October close: ERP ledger, gateway report, payout file and bank statement, with 12 labelled problem types for scoring",
+            "Cleaning pipeline with 18 logged rules (duplicates, test rows, paise, UTC vs IST, messy refs), a quarantine table and 19/19 validation checks",
+            "Control totals don't tie: ERP net sales ₹2.20 cr vs gateway credits in the bank ₹2.04 cr"],
+    link: "https://github.com/Rahman17309/transaction-reconciliation-engine",
   },
   {
     date: "2026-11-22", tag: "Power BI · Finance", title: "Finance / CFO Dashboard shipped",
