@@ -3,10 +3,17 @@
 window.BUILD_NOW = {
   project: "Transaction Reconciliation Engine (ledger ↔ gateway ↔ bank)",
   link: "https://github.com/Rahman17309/transaction-reconciliation-engine",
-  day: 2, of: 7,
-  next: "Day 3: SQL matching rules in DuckDB (exact, normalised, ±₹1 tolerance, cut-off window, payout ↔ transactions) and the exception register",
+  day: 3, of: 7,
+  next: "Day 4: score the engine against the ground-truth labels (precision and recall per exception type) and review every miss",
 };
 window.BUILD_LOG = [
+  {
+    date: "2026-11-25", tag: "Reconciliation · Day 3", title: "SQL engine in DuckDB: rule cascade, exception register, cash bridge",
+    items: ["9-rule SQL cascade auto-matches 98.05% of 23,976 keys; cut-off rows reclassified as timing, 356 ledger↔gateway breaks left",
+            "Exception register of 619 owned items; one held payout is 63.7% of the ₹10.07 L break value",
+            "Cash bridge from ERP net sales to bank credits explains the ₹15.41 L gap with ₹0.00 unexplained"],
+    link: "https://github.com/Rahman17309/transaction-reconciliation-engine",
+  },
   {
     date: "2026-11-24", tag: "Reconciliation · Day 2", title: "EDA: where the ledger, gateway and bank disagree",
     items: ["First-pass order-id match: 97.7% exact; 468 keys (₹4.30 L) need a decision",
