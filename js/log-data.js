@@ -3,10 +3,17 @@
 window.BUILD_NOW = {
   project: "Transaction Reconciliation Engine (ledger ↔ gateway ↔ bank)",
   link: "https://github.com/Rahman17309/transaction-reconciliation-engine",
-  day: 3, of: 7,
-  next: "Day 4: score the engine against the ground-truth labels (precision and recall per exception type) and review every miss",
+  day: 4, of: 7,
+  next: "Day 5: reconciliation dashboard (match rates, exception queue by owner, fee audit and the cash bridge)",
 };
 window.BUILD_LOG = [
+  {
+    date: "2026-11-26", tag: "Reconciliation · Day 4", title: "Validated against ground truth: 100% precision, 99.90% recall",
+    items: ["Scored every exception type against the injected labels: 0 false positives, 2,073 of 2,075 in-scope problems caught",
+            "Scoring exposed two engine bugs, both fixed in SQL: 31 Oct refunds wrongly flagged (now a learned credit-note-pending window) and a 31 Oct/1 Nov cross-period match",
+            "Rules frozen and rerun on 20 newly generated months: every bridge ties to ₹0.00, recall 99.63–99.90%"],
+    link: "https://github.com/Rahman17309/transaction-reconciliation-engine",
+  },
   {
     date: "2026-11-25", tag: "Reconciliation · Day 3", title: "SQL engine in DuckDB: rule cascade, exception register, cash bridge",
     items: ["9-rule SQL cascade auto-matches 98.05% of 23,976 keys; cut-off rows reclassified as timing, 356 ledger↔gateway breaks left",
