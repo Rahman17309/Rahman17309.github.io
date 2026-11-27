@@ -3,10 +3,17 @@
 window.BUILD_NOW = {
   project: "Transaction Reconciliation Engine (ledger ↔ gateway ↔ bank)",
   link: "https://github.com/Rahman17309/transaction-reconciliation-engine",
-  day: 4, of: 7,
-  next: "Day 5: reconciliation dashboard (match rates, exception queue by owner, fee audit and the cash bridge)",
+  day: 5, of: 7,
+  next: "Day 6: ₹ impact sizing, recommendations report and the case-study page",
 };
 window.BUILD_LOG = [
+  {
+    date: "2026-11-27", tag: "Reconciliation · Day 5", title: "Four-page reconciliation dashboard, tied out to the engine",
+    items: ["Overview, Exceptions, Gateway fees and Settlements pages on six SQL marts; 7 tie-out checks must pass before the page is written",
+            "Exceptions page: slicers by owner, type and age over all 619 items, largest-first queue, CSV export; 66 items hold 80% of break value",
+            "New finding: 227 of 485 breaks (46.8%) were over 14 days old at close, the cost of reconciling monthly instead of daily"],
+    link: "https://rahman17309.github.io/work/recon-dashboard.html",
+  },
   {
     date: "2026-11-26", tag: "Reconciliation · Day 4", title: "Validated against ground truth: 100% precision, 99.90% recall",
     items: ["Scored every exception type against the injected labels: 0 false positives, 2,073 of 2,075 in-scope problems caught",
