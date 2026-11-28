@@ -11,7 +11,7 @@ window.BUILD_LOG = [
     date: "2026-11-28", tag: "Reconciliation · Day 6", title: "What the exceptions are worth: ₹ impact and a ranked action list",
     items: ["₹6.71 L of cash to recover this close; 95.7% of it is one payout the gateway held for 11 days",
             "Closing without the engine would overstate revenue by ₹2.29 L (1.04% of sales), 2× a 0.5% materiality threshold, and it is material in 20 of 20 test months",
-            "Wallet fee step priced at the current rate: ≈ ₹81k a year, 20× the October claim; 8 recommendations with owners and evidence, plus the case-study page"],
+            "Wallet fee step priced at the current rate: ₹75k a year incl. GST, about 22× the October wallet overcharge; 8 recommendations with owners and evidence, plus the case-study page"],
     link: "https://rahman17309.github.io/work/reconciliation-engine.html",
   },
   {
